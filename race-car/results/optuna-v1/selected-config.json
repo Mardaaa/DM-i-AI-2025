@@ -1,0 +1,11 @@
+{
+  "horizon": 195,
+  "batch_size": 8,
+  "margin": 6.611122416525868,
+  "uncertainty": 0.07880208294199434,
+  "terminal_speed_weight": 74.66589072102381,
+  "blind_history": 140,
+  "blind_speed_buffer": 1.40146303237539,
+  "stale_velocity_uncertainty": 0.17042267780934428,
+  "lane_change_penalty": 0.49547352667356165
+}

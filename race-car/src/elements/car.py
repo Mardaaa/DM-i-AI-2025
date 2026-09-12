@@ -1,4 +1,5 @@
 import pygame
+from pathlib import Path
 from typing import Optional
 from ..mathematics.vector import Vector 
 from .road import Lane   
@@ -72,7 +73,7 @@ class Car:
         :return: The loaded sprite as a pygame.Surface.
         """
         try:
-            sprite = pygame.image.load(path)
+            sprite = pygame.image.load(str(Path(__file__).resolve().parents[2] / path))
             aspect_ratio = sprite.get_width() / sprite.get_height()
             new_height = target_height
             new_width = int(aspect_ratio * new_height)

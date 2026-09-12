@@ -1,27 +1,21 @@
-import pygame
-import random
-from src.game.core import initialize_game_state, game_loop
+"""Visual expert-driver demo. Use benchmark.py for fast headless evaluation."""
 
+from expert import ExpertController
+from settings import driver_config
 
-'''
-Set seed_value to None for random seed.
-Within game_loop, change get_action() to your custom models prediction for local testing and training.
-'''
+_controller = ExpertController(driver_config())
+
 
 def return_action(state):
-    # Returns a list of actions
-    actions = []
-    action_choices = ['ACCELERATE', 'DECELERATE', 'STEER_LEFT', 'STEER_RIGHT', 'NOTHING']
-    for _ in range(10):
-        actions.append(random.choice(action_choices))
-    return actions
+    return _controller.actions(state)
 
 
+if __name__ == "__main__":
+    import pygame
+    from benchmark import run_episode
 
-
-if __name__ == '__main__':
-    seed_value = 565318
     pygame.init()
-    initialize_game_state("http://example.com/api/predict", seed_value)
-    game_loop(verbose=True) # For pygame window
-    pygame.quit()
+    try:
+        print(run_episode("565318", config=driver_config(), visual=True))
+    finally:
+        pygame.quit()

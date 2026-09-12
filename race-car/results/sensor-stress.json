@@ -1,0 +1,143 @@
+{
+  "provenance": {
+    "controller_sha256": "49f290f0cdc29fc3e18a4175f25db206ca90881a4de77fe83605e54c83a7ce91",
+    "python": "3.12.3",
+    "packages": {
+      "numpy": "2.5.3",
+      "pygame": "2.6.1",
+      "fastapi": "0.141.1",
+      "pydantic": "2.13.5"
+    }
+  },
+  "config": {
+    "horizon": 210,
+    "batch_size": 12,
+    "margin": 12.0,
+    "uncertainty": 0.06,
+    "terminal_speed_weight": 80.0,
+    "blind_history": 150
+  },
+  "sensor_removal": 8,
+  "max_ticks": 3600,
+  "summary": {
+    "games": 10,
+    "survived": 6,
+    "mean_distance": 95985.42,
+    "median_distance": 71010.6,
+    "min_distance": 3580,
+    "max_distance": 229788.0,
+    "mean_decision_ms": 1.073
+  },
+  "results": [
+    {
+      "seed": "sensor-stress-0",
+      "policy": "expert",
+      "distance": 216361.8,
+      "ticks": 3600,
+      "crashed": false,
+      "final_speed": 104.8,
+      "requests": 315,
+      "mean_decision_ms": 1.083,
+      "max_decision_ms": 1.946
+    },
+    {
+      "seed": "sensor-stress-1",
+      "policy": "expert",
+      "distance": 128216.8,
+      "ticks": 3600,
+      "crashed": false,
+      "final_speed": 83.6,
+      "requests": 320,
+      "mean_decision_ms": 1.065,
+      "max_decision_ms": 1.9
+    },
+    {
+      "seed": "sensor-stress-2",
+      "policy": "expert",
+      "distance": 113419.2,
+      "ticks": 3600,
+      "crashed": false,
+      "final_speed": 58.0,
+      "requests": 306,
+      "mean_decision_ms": 0.974,
+      "max_decision_ms": 1.596
+    },
+    {
+      "seed": "sensor-stress-3",
+      "policy": "expert",
+      "distance": 28602.0,
+      "ticks": 3600,
+      "crashed": false,
+      "final_speed": 7.6,
+      "requests": 303,
+      "mean_decision_ms": 1.065,
+      "max_decision_ms": 1.478
+    },
+    {
+      "seed": "sensor-stress-4",
+      "policy": "expert",
+      "distance": 17420.4,
+      "ticks": 1155,
+      "crashed": true,
+      "final_speed": 29.2,
+      "requests": 102,
+      "mean_decision_ms": 1.107,
+      "max_decision_ms": 1.507
+    },
+    {
+      "seed": "sensor-stress-5",
+      "policy": "expert",
+      "distance": 13031.0,
+      "ticks": 1082,
+      "crashed": true,
+      "final_speed": 16.0,
+      "requests": 91,
+      "mean_decision_ms": 1.003,
+      "max_decision_ms": 1.49
+    },
+    {
+      "seed": "sensor-stress-6",
+      "policy": "expert",
+      "distance": 194085.0,
+      "ticks": 3600,
+      "crashed": false,
+      "final_speed": 104.8,
+      "requests": 318,
+      "mean_decision_ms": 1.071,
+      "max_decision_ms": 1.47
+    },
+    {
+      "seed": "sensor-stress-7",
+      "policy": "expert",
+      "distance": 15350.0,
+      "ticks": 644,
+      "crashed": true,
+      "final_speed": 31.6,
+      "requests": 57,
+      "mean_decision_ms": 1.104,
+      "max_decision_ms": 1.445
+    },
+    {
+      "seed": "sensor-stress-8",
+      "policy": "expert",
+      "distance": 229788.0,
+      "ticks": 3600,
+      "crashed": false,
+      "final_speed": 120.4,
+      "requests": 317,
+      "mean_decision_ms": 1.056,
+      "max_decision_ms": 1.447
+    },
+    {
+      "seed": "sensor-stress-9",
+      "policy": "expert",
+      "distance": 3580,
+      "ticks": 358,
+      "crashed": true,
+      "final_speed": 10,
+      "requests": 30,
+      "mean_decision_ms": 1.197,
+      "max_decision_ms": 1.57
+    }
+  ]
+}

@@ -1,0 +1,130 @@
+{
+  "config": {
+    "horizon": 210,
+    "batch_size": 12,
+    "margin": 12.0,
+    "uncertainty": 0.06,
+    "terminal_speed_weight": 80.0
+  },
+  "summary": {
+    "games": 10,
+    "survived": 10,
+    "mean_distance": 173505.91,
+    "median_distance": 165315.95,
+    "min_distance": 113530.8,
+    "max_distance": 242473.8,
+    "mean_decision_ms": 1.212
+  },
+  "results": [
+    {
+      "seed": "tune-0",
+      "policy": "expert",
+      "distance": 242473.8,
+      "ticks": 3600,
+      "crashed": false,
+      "final_speed": 119.2,
+      "requests": 316,
+      "mean_decision_ms": 1.459,
+      "max_decision_ms": 3.958
+    },
+    {
+      "seed": "tune-1",
+      "policy": "expert",
+      "distance": 224523.0,
+      "ticks": 3600,
+      "crashed": false,
+      "final_speed": 107.2,
+      "requests": 312,
+      "mean_decision_ms": 1.323,
+      "max_decision_ms": 3.102
+    },
+    {
+      "seed": "tune-2",
+      "policy": "expert",
+      "distance": 155232.1,
+      "ticks": 3600,
+      "crashed": false,
+      "final_speed": 86.6,
+      "requests": 319,
+      "mean_decision_ms": 1.246,
+      "max_decision_ms": 3.243
+    },
+    {
+      "seed": "tune-3",
+      "policy": "expert",
+      "distance": 241510.2,
+      "ticks": 3600,
+      "crashed": false,
+      "final_speed": 92.8,
+      "requests": 317,
+      "mean_decision_ms": 1.242,
+      "max_decision_ms": 2.509
+    },
+    {
+      "seed": "tune-4",
+      "policy": "expert",
+      "distance": 120491.4,
+      "ticks": 3600,
+      "crashed": false,
+      "final_speed": 61.6,
+      "requests": 315,
+      "mean_decision_ms": 1.148,
+      "max_decision_ms": 1.708
+    },
+    {
+      "seed": "tune-5",
+      "policy": "expert",
+      "distance": 184057.8,
+      "ticks": 3600,
+      "crashed": false,
+      "final_speed": 90.4,
+      "requests": 316,
+      "mean_decision_ms": 1.146,
+      "max_decision_ms": 1.717
+    },
+    {
+      "seed": "tune-6",
+      "policy": "expert",
+      "distance": 146083.8,
+      "ticks": 3600,
+      "crashed": false,
+      "final_speed": 78.4,
+      "requests": 314,
+      "mean_decision_ms": 1.203,
+      "max_decision_ms": 1.726
+    },
+    {
+      "seed": "tune-7",
+      "policy": "expert",
+      "distance": 175399.8,
+      "ticks": 3600,
+      "crashed": false,
+      "final_speed": 92.8,
+      "requests": 317,
+      "mean_decision_ms": 1.124,
+      "max_decision_ms": 1.705
+    },
+    {
+      "seed": "tune-8",
+      "policy": "expert",
+      "distance": 131756.4,
+      "ticks": 3600,
+      "crashed": false,
+      "final_speed": 70.0,
+      "requests": 312,
+      "mean_decision_ms": 1.091,
+      "max_decision_ms": 1.731
+    },
+    {
+      "seed": "tune-9",
+      "policy": "expert",
+      "distance": 113530.8,
+      "ticks": 3600,
+      "crashed": false,
+      "final_speed": 65.2,
+      "requests": 315,
+      "mean_decision_ms": 1.138,
+      "max_decision_ms": 1.701
+    }
+  ]
+}

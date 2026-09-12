@@ -1,5 +1,28 @@
 # Race Car
 
+## Deterministic expert solution
+
+An autonomous, hand-written controller is now included: no neural network,
+training data, learned weights, seed lookup, or simulator-state access.
+
+- [expert.py](expert.py): geometric sensor reconstruction, traffic tracking,
+  bang-bang steering and short-horizon planning.
+- [example.py](example.py): watch the expert drive in Pygame.
+- [benchmark.py](benchmark.py): fast headless evaluation using the original physics.
+- [optimize.py](optimize.py): reproducible parameter sweeps.
+- [optuna_search.py](optuna_search.py): Bayesian parameter search with crash
+    penalties, independent selection/test seeds, and resumable SQLite storage.
+- [EXPERT.md](EXPERT.md): mathematics, usage, results and limitations.
+
+**Optuna held-out results:** 98/100 complete games, mean distance **201,242**,
+best **413,092**. On the same 100 fresh seeds the prior defaults averaged
+148,559 and finished 95/100: **35.5% more mean distance**.
+The API/demo now use [configs/expert.json](configs/expert.json).
+See [OPTUNA.md](OPTUNA.md) and [the full report](results/optuna-v1/holdout.json).
+These are local results, not a guarantee of safety or a competition score.
+Under the current 3600-tick rules, the absolute distance ceiling is **684,180**;
+one million is not physically attainable even with uninterrupted acceleration.
+
 🔴 Ready
 
 🟡 Set
@@ -13,7 +36,7 @@ Race against the competition to go the furthest in the allotted time, but be car
 ![Race Car](../images/race_car_intro.png)
 
 ## About the game
-You control the yellow car. Red and blue cars will spawn in random lanes - it is your job to dodge them. The car is equipped with 8 evenly spaced sensors - each being able to find obstacles within a 1000px. Figure 2 shows an image of the sensors with names.
+You control the yellow car. Red and blue cars will spawn in random lanes - it is your job to dodge them. The supplied implementation enables 16 evenly spaced sensors by default, each with a 1000px reach; sensors can be removed during initialization. Figure 2 shows an image of the sensors with names.
 
 Each tick the game is updated. The game runs with 60 ticks per second. A list stores future actions, and each tick, an action is popped from the list and applied to the car. If there are no actions in the list, it will repeat the last action. If there is no last action, it will default to 'NOTHING'. 
 
@@ -28,11 +51,11 @@ On the top and bottom of the screens are walls. If you hit the walls your car wi
 
 Your goal is to go as far as you can in one minute. Your game will **end** if you crash into other cars or into walls. Your final score will be based on your distance.
 
-Train a model to interpret the sensor input and respond with commands for your car.
+Interpret the sensor input and respond with commands for your car. The included expert controller does this without training.
 
 ### Controls
 
-Pygame has been used to setup visualisation of the game locally. Initial controls using arrowkeys have been added. Change this to your own logic. 
+Pygame provides local visualization. The example now runs the expert driver; the original arrow-key controller remains in [src/game/core.py](src/game/core.py).
 
 To communicate with the server for validation and evaluation, use the functions found in dtos.py. You can test if these work using the *test connection* button on [cases.dmiai.dk](https://cases.dmiai.dk). 
 
@@ -41,7 +64,7 @@ When the competition server needs actions, it will request them from your server
 
 ### Sensors
 
-Sensor output is your information from the game. There are 8 sensors on the car, each is positioned at a specific angle (in degrees) relative to the center of the car and has a reach of 1000 pixels. The image below shows the sensors, as well as a list of all sensors.
+Sensor output is your information from the game. By default there are 16 sensors on the car, each positioned at a specific angle (in degrees) relative to the center of the car with a reach of 1000 pixels. The image below shows the sensors, as well as a list of all sensors.
 
 ![Sensors](../images/race_car_sensors.png)
 
@@ -83,7 +106,8 @@ The evaluation opens up on Thursday the 7th at 12:00 CET and will have a preset 
 
 ```cmd
 git clone https://github.com/amboltio/DM-i-AI-2025
-cd DM-i-AI-2024/race-car
+cd DM-i-AI-2025/race-car
+python -m pip install -r requirements-dev.txt
 ```
 
 
@@ -91,7 +115,6 @@ cd DM-i-AI-2024/race-car
 Serve your endpoint locally and test that everything starts without errors
 
 ```cmd
-cd race-car
 python api.py
 ```
 Open a browser and navigate to http://localhost:9052. You should see a message stating that the endpoint is running. 
@@ -107,10 +130,13 @@ You can send the following action responses:
 
 ### Run the simulation locally
 ```cmd
-cd race-car
 python example.py
 ```
-By default the action input will use arrowkeys. 
+By default the expert drives autonomously with the Optuna-selected settings.
+For a fast headless run of that same preset, use
+`python benchmark.py --config configs/expert.json --games 10`.
+Omitting `--config` deliberately benchmarks the old baseline defaults.
+For tests, use `python -m pytest tests -q`.
 
 
 **We recommend you do not change the amount of lanes or the size of the game during training.**
