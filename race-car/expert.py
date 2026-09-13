@@ -39,8 +39,19 @@ class Config:
     blind_speed_buffer: float = 5.5
     stale_velocity_uncertainty: float = 0.12
     lane_change_penalty: float = 0.1
+    planner: str = "legacy"
+    maneuver_delay: int = 24
+    recovery_ticks: int = 120
+    adaptive_batch: bool = True
+    drift_speed: float = 2.0
 
     def __post_init__(self):
+        if self.planner not in ("legacy", "maneuver", "drift"):
+            raise ValueError("planner must be legacy, maneuver or drift")
+        if not math.isfinite(self.drift_speed) or not 0.2 <= self.drift_speed <= 6:
+            raise ValueError("drift_speed must be finite and between 0.2 and 6")
+        if not 1 <= self.maneuver_delay <= 120 or not 1 <= self.recovery_ticks <= 300:
+            raise ValueError("maneuver_delay must be 1..120; recovery_ticks must be 1..300")
         if not 1 <= self.batch_size <= self.horizon <= 1000:
             raise ValueError("Require 1 <= batch_size <= horizon <= 1000")
         if not 1 <= self.blind_history <= 250:
@@ -245,18 +256,14 @@ class ExpertController:
         distances = np.cumsum(speeds, axis=1)
         return actions, ys, speeds, distances, np.asarray(targets)
 
-    def actions(self, state: dict) -> list[str]:
-        if state.get("did_crash", False):
-            self.reset()
-            return ["NOTHING"]
-        key = (state["elapsed_ticks"], state["distance"], state["velocity"]["x"],
-               state["velocity"]["y"], tuple(sorted(state["sensors"].items())))
-        if key == self.last_request:
-            return list(self.previous_actions)
-        self._observe(state)
-        vx, vy = float(state["velocity"]["x"]), float(state["velocity"]["y"])
-        actions, ys, speeds, distances, targets = self._plans(vx, vy)
-        times = np.arange(1, self.config.horizon + 1)
+    def collision_mask(self, ys, speeds, distances, targets, vx, frontiers=None):
+        """Predicted collisions from the current observation, for arbitrary paths.
+
+        All distances and times start at the observation, including recovery
+        branches. Uses estimated traffic only; uncertainty is heuristic.
+        """
+        horizon = ys.shape[1]
+        times = np.arange(1, horizon + 1)
         collision = (ys < 131) | (ys > 1067)
         for lane, track in self.tracks.items():
             xs = track.x + track.speed * times - distances
@@ -265,12 +272,12 @@ class ExpertController:
                        + self.config.stale_velocity_uncertainty * math.sqrt(age) * times)
             collision |= (np.abs(xs) < CAR_WIDTH + padding) & (np.abs(ys - LANE_CENTERS[lane]) < CAR_HEIGHT + 3)
         # Unknown does not mean empty: sparse rays have substantial blind spots.
-        for lane, (front, back) in self._unseen_frontiers().items():
+        for lane, (front, back) in (self._unseen_frontiers() if frontiers is None else frontiers).items():
             if abs(self.y - LANE_CENTERS[lane]) < CAR_HEIGHT + 3:
                 # Reserve braking range for a lead car just outside visibility.
                 floor_speed = (min(v for t, v in self.speed_history if t >= self.tick - self.config.blind_history)
                                - self.config.blind_speed_buffer)
-                reaction = min(self.config.batch_size, self.config.horizon)
+                reaction = min(self.config.batch_size, horizon)
                 future = np.maximum(0, times - reaction)
                 brake_distance = (distances[:, reaction - 1, None]
                                   + speeds[:, reaction - 1, None] * future
@@ -281,12 +288,37 @@ class ExpertController:
                 phantom_x = front + floor_speed * times - brake_distance
                 danger = (phantom_x < CAR_WIDTH + self.config.margin) & (times <= reaction + stopping[:, None])
                 staying = targets == LANE_CENTERS[lane]
-                collision |= danger & staying[:, None]
+                if self.config.planner != "legacy":
+                    # A future destination does not exempt a throttle-first
+                    # prefix from preserving braking range in its present lane.
+                    collision |= danger & (np.abs(ys - LANE_CENTERS[lane]) < CAR_HEIGHT + 3)
+                else:
+                    collision |= danger & staying[:, None]
                 continue
             overlap = np.abs(ys - LANE_CENTERS[lane]) < CAR_HEIGHT + 3
             forward = front + (vx - 8) * times - distances
             rearward = back + (vx + 5) * times - distances
             collision |= overlap & ((np.abs(forward) < CAR_WIDTH + 20) | (np.abs(rearward) < CAR_WIDTH + 20))
+        return collision
+
+    def actions(self, state: dict) -> list[str]:
+        if state.get("did_crash", False):
+            self.reset()
+            return ["NOTHING"]
+        key = (state["elapsed_ticks"], state["distance"], state["velocity"]["x"],
+               state["velocity"]["y"], tuple(sorted(state["sensors"].items())))
+        if key == self.last_request:
+            return list(self.previous_actions)
+        self._observe(state)
+        vx, vy = float(state["velocity"]["x"]), float(state["velocity"]["y"])
+        if self.config.planner != "legacy":
+            from maneuver import choose_actions
+            result, self.last_plan = choose_actions(self, vx, vy)
+            self.previous_actions, self.previous_vy = result, vy
+            self.last_request = key
+            return result
+        actions, ys, speeds, distances, targets = self._plans(vx, vy)
+        collision = self.collision_mask(ys, speeds, distances, targets, vx)
         first_hit = np.where(collision.any(axis=1), collision.argmax(axis=1), self.config.horizon)
         value = distances[:, -1] + self.config.terminal_speed_weight * speeds[:, -1]
         value -= self.config.lane_change_penalty * np.abs(targets - self.y)

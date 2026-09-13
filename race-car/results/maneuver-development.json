@@ -1,0 +1,658 @@
+{
+  "provenance": {
+    "controller_sha256": "ada57ffc792bd36d76860a9f6377810161a6f2b7cd2cad31d2b29110ad51e0e3",
+    "maneuver_sha256": "ae832491f40fd564270a1837c13b53f34da5d6de9cd274a4374200eaa7d09d4e",
+    "python": "3.12.3",
+    "packages": {
+      "numpy": "2.5.3",
+      "pygame": "2.6.1",
+      "fastapi": "0.141.1",
+      "pydantic": "2.13.5"
+    }
+  },
+  "source_hashes": {
+    "expert.py": "ada57ffc792bd36d76860a9f6377810161a6f2b7cd2cad31d2b29110ad51e0e3",
+    "benchmark.py": "f3ed9c03134931630aa827c8920fe40da1523823b70318bc308e1380053d2a6c",
+    "optuna_search.py": "5ab5b5a5b4fa4697bd36d27a5070ecb5443c5aeb26866c3db4c549546e4d0f89",
+    "src/elements/car.py": "4cb0fdf52d390b2f81f2058efefa2c6e9a17b656642c2750ad6252916cc9d420",
+    "src/elements/road.py": "efe3c6fda70f4c96cf4b6ac4390bc2d5e81743aa98ed8dc0ce73a1941592becd",
+    "src/elements/sensor.py": "f5eb50a1405e2bfe0fc818d2b03700f306fa575e29f128839f6ff1e4f6fe0557",
+    "src/elements/wall.py": "602a59eabfcb6cd1b52bce37adf8a0dfeac23f8bd5bfbc1ed28e079612b27a55",
+    "src/game/core.py": "f2fc2c4b9a13f68c7027c33da839e4e7f1b9d4829efa9c96fa5875986c6ef362",
+    "src/mathematics/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/mathematics/collision.py": "c2253cab067ff222e5e5dc63db4feb6a3c311d25f3045c8f43766df26aeaf905",
+    "src/mathematics/randomizer.py": "5886d41041a7d50e6daa8ef36f68da048656df900b3d1f8cac7a369f000cd55e",
+    "src/mathematics/vector.py": "9e8cc29361553abd8458daf8c57f5145df3a3fdc66b7358c63615998c5c81d8f",
+    "public/assets/bluecar.png": "e43aa09dc36b197a245b0c182b51190c9cb7ab3f7f3c2259b4d6c612b6a8e19b",
+    "public/assets/redcar.png": "840e681237fbd440c0cc330c3523315242e94e5623295dbb2ed7fcb19ed8734f",
+    "public/assets/yellowcar.png": "df3df8caefd8e72c06118501e2d36813a402990151a13bd1d61002d327d1623e"
+  },
+  "seeds": [
+    "maneuver-dev-0",
+    "maneuver-dev-1",
+    "maneuver-dev-2",
+    "maneuver-dev-3",
+    "maneuver-dev-4",
+    "maneuver-dev-5",
+    "maneuver-dev-6",
+    "maneuver-dev-7",
+    "maneuver-dev-8",
+    "maneuver-dev-9"
+  ],
+  "candidates": [
+    {
+      "label": "legacy",
+      "config": {
+        "horizon": 195,
+        "batch_size": 8,
+        "margin": 6.611122416525868,
+        "uncertainty": 0.07880208294199434,
+        "terminal_speed_weight": 74.66589072102381,
+        "blind_history": 140,
+        "blind_speed_buffer": 1.40146303237539,
+        "stale_velocity_uncertainty": 0.17042267780934428,
+        "lane_change_penalty": 0.49547352667356165,
+        "planner": "legacy",
+        "maneuver_delay": 24,
+        "recovery_ticks": 120,
+        "adaptive_batch": true
+      },
+      "summary": {
+        "games": 10,
+        "survived": 9,
+        "mean_distance": 228678.18,
+        "median_distance": 224043.85,
+        "min_distance": 126936.3,
+        "max_distance": 331880.3,
+        "mean_decision_ms": 0.813,
+        "survival_rate": 0.9,
+        "p10_distance": 193992.15,
+        "robust_utility": 179610.18894,
+        "survival_95ci": [
+          0.5958499732047615,
+          0.9821237869049271
+        ]
+      },
+      "results": [
+        {
+          "seed": "maneuver-dev-0",
+          "policy": "expert",
+          "distance": 222165.3,
+          "ticks": 3600,
+          "crashed": false,
+          "final_speed": 113.8,
+          "requests": 461,
+          "mean_decision_ms": 0.868,
+          "max_decision_ms": 2.749
+        },
+        {
+          "seed": "maneuver-dev-1",
+          "policy": "expert",
+          "distance": 202594.6,
+          "ticks": 2693,
+          "crashed": true,
+          "final_speed": 122.3,
+          "requests": 348,
+          "mean_decision_ms": 0.833,
+          "max_decision_ms": 1.387
+        },
+        {
+          "seed": "maneuver-dev-2",
+          "policy": "expert",
+          "distance": 280064.8,
+          "ticks": 3600,
+          "crashed": false,
+          "final_speed": 123.6,
+          "requests": 466,
+          "mean_decision_ms": 0.858,
+          "max_decision_ms": 2.418
+        },
+        {
+          "seed": "maneuver-dev-3",
+          "policy": "expert",
+          "distance": 126936.3,
+          "ticks": 3600,
+          "crashed": false,
+          "final_speed": 55.0,
+          "requests": 460,
+          "mean_decision_ms": 0.842,
+          "max_decision_ms": 2.196
+        },
+        {
+          "seed": "maneuver-dev-4",
+          "policy": "expert",
+          "distance": 201442.8,
+          "ticks": 3600,
+          "crashed": false,
+          "final_speed": 105.2,
+          "requests": 463,
+          "mean_decision_ms": 0.801,
+          "max_decision_ms": 1.698
+        },
+        {
+          "seed": "maneuver-dev-5",
+          "policy": "expert",
+          "distance": 331880.3,
+          "ticks": 3600,
+          "crashed": false,
+          "final_speed": 141.4,
+          "requests": 467,
+          "mean_decision_ms": 0.8,
+          "max_decision_ms": 1.235
+        },
+        {
+          "seed": "maneuver-dev-6",
+          "policy": "expert",
+          "distance": 265182.9,
+          "ticks": 3600,
+          "crashed": false,
+          "final_speed": 138.6,
+          "requests": 472,
+          "mean_decision_ms": 0.818,
+          "max_decision_ms": 1.889
+        },
+        {
+          "seed": "maneuver-dev-7",
+          "policy": "expert",
+          "distance": 225922.4,
+          "ticks": 3600,
+          "crashed": false,
+          "final_speed": 91.6,
+          "requests": 464,
+          "mean_decision_ms": 0.792,
+          "max_decision_ms": 2.262
+        },
+        {
+          "seed": "maneuver-dev-8",
+          "policy": "expert",
+          "distance": 201845.2,
+          "ticks": 3600,
+          "crashed": false,
+          "final_speed": 97.2,
+          "requests": 473,
+          "mean_decision_ms": 0.766,
+          "max_decision_ms": 1.175
+        },
+        {
+          "seed": "maneuver-dev-9",
+          "policy": "expert",
+          "distance": 228747.2,
+          "ticks": 3600,
+          "crashed": false,
+          "final_speed": 77.2,
+          "requests": 477,
+          "mean_decision_ms": 0.749,
+          "max_decision_ms": 1.113
+        }
+      ]
+    },
+    {
+      "label": "maneuver-delay-12",
+      "config": {
+        "horizon": 195,
+        "batch_size": 8,
+        "margin": 6.611122416525868,
+        "uncertainty": 0.07880208294199434,
+        "terminal_speed_weight": 74.66589072102381,
+        "blind_history": 140,
+        "blind_speed_buffer": 1.40146303237539,
+        "stale_velocity_uncertainty": 0.17042267780934428,
+        "lane_change_penalty": 0.49547352667356165,
+        "planner": "maneuver",
+        "maneuver_delay": 12,
+        "recovery_ticks": 120,
+        "adaptive_batch": true
+      },
+      "summary": {
+        "games": 10,
+        "survived": 9,
+        "mean_distance": 258030.45,
+        "median_distance": 239093.15,
+        "min_distance": 112060.4,
+        "max_distance": 377116.8,
+        "mean_decision_ms": 7.574,
+        "survival_rate": 0.9,
+        "p10_distance": 147566.3,
+        "robust_utility": 191109.47220000002,
+        "survival_95ci": [
+          0.5958499732047615,
+          0.9821237869049271
+        ]
+      },
+      "results": [
+        {
+          "seed": "maneuver-dev-0",
+          "policy": "expert",
+          "distance": 307547.1,
+          "ticks": 3600,
+          "crashed": false,
+          "final_speed": 128.2,
+          "requests": 463,
+          "mean_decision_ms": 7.313,
+          "max_decision_ms": 19.737
+        },
+        {
+          "seed": "maneuver-dev-1",
+          "policy": "expert",
+          "distance": 362294.2,
+          "ticks": 3600,
+          "crashed": false,
+          "final_speed": 182.4,
+          "requests": 467,
+          "mean_decision_ms": 7.682,
+          "max_decision_ms": 27.53
+        },
+        {
+          "seed": "maneuver-dev-2",
+          "policy": "expert",
+          "distance": 151511.4,
+          "ticks": 2787,
+          "crashed": true,
+          "final_speed": 95.9,
+          "requests": 366,
+          "mean_decision_ms": 7.92,
+          "max_decision_ms": 24.978
+        },
+        {
+          "seed": "maneuver-dev-3",
+          "policy": "expert",
+          "distance": 244883.4,
+          "ticks": 3600,
+          "crashed": false,
+          "final_speed": 134.2,
+          "requests": 466,
+          "mean_decision_ms": 7.272,
+          "max_decision_ms": 31.209
+        },
+        {
+          "seed": "maneuver-dev-4",
+          "policy": "expert",
+          "distance": 233302.9,
+          "ticks": 3600,
+          "crashed": false,
+          "final_speed": 117.8,
+          "requests": 467,
+          "mean_decision_ms": 7.482,
+          "max_decision_ms": 21.423
+        },
+        {
+          "seed": "maneuver-dev-5",
+          "policy": "expert",
+          "distance": 230560.7,
+          "ticks": 3600,
+          "crashed": false,
+          "final_speed": 89.4,
+          "requests": 467,
+          "mean_decision_ms": 7.543,
+          "max_decision_ms": 23.973
+        },
+        {
+          "seed": "maneuver-dev-6",
+          "policy": "expert",
+          "distance": 350139.8,
+          "ticks": 3600,
+          "crashed": false,
+          "final_speed": 204.8,
+          "requests": 473,
+          "mean_decision_ms": 8.003,
+          "max_decision_ms": 23.4
+        },
+        {
+          "seed": "maneuver-dev-7",
+          "policy": "expert",
+          "distance": 377116.8,
+          "ticks": 3600,
+          "crashed": false,
+          "final_speed": 188.8,
+          "requests": 471,
+          "mean_decision_ms": 7.824,
+          "max_decision_ms": 33.703
+        },
+        {
+          "seed": "maneuver-dev-8",
+          "policy": "expert",
+          "distance": 112060.4,
+          "ticks": 3600,
+          "crashed": false,
+          "final_speed": 76.4,
+          "requests": 463,
+          "mean_decision_ms": 7.5,
+          "max_decision_ms": 21.934
+        },
+        {
+          "seed": "maneuver-dev-9",
+          "policy": "expert",
+          "distance": 210887.8,
+          "ticks": 3600,
+          "crashed": false,
+          "final_speed": 99.2,
+          "requests": 472,
+          "mean_decision_ms": 7.198,
+          "max_decision_ms": 21.321
+        }
+      ],
+      "comparison": {
+        "mean_distance_difference": 29352.269999999993,
+        "paired_bootstrap_95ci": [
+          -32877.3,
+          90712.26999999999
+        ],
+        "distance_ratio": 1.1283562340753281,
+        "seed_wins": 6,
+        "survival_difference": 0.0
+      }
+    },
+    {
+      "label": "maneuver-delay-24",
+      "config": {
+        "horizon": 195,
+        "batch_size": 8,
+        "margin": 6.611122416525868,
+        "uncertainty": 0.07880208294199434,
+        "terminal_speed_weight": 74.66589072102381,
+        "blind_history": 140,
+        "blind_speed_buffer": 1.40146303237539,
+        "stale_velocity_uncertainty": 0.17042267780934428,
+        "lane_change_penalty": 0.49547352667356165,
+        "planner": "maneuver",
+        "maneuver_delay": 24,
+        "recovery_ticks": 120,
+        "adaptive_batch": true
+      },
+      "summary": {
+        "games": 10,
+        "survived": 9,
+        "mean_distance": 205454.11,
+        "median_distance": 216061.0,
+        "min_distance": 46457.5,
+        "max_distance": 329118.0,
+        "mean_decision_ms": 10.426,
+        "survival_rate": 0.9,
+        "p10_distance": 89183.74,
+        "robust_utility": 147582.02916,
+        "survival_95ci": [
+          0.5958499732047615,
+          0.9821237869049271
+        ]
+      },
+      "results": [
+        {
+          "seed": "maneuver-dev-0",
+          "policy": "expert",
+          "distance": 183631.5,
+          "ticks": 3600,
+          "crashed": false,
+          "final_speed": 107.8,
+          "requests": 461,
+          "mean_decision_ms": 8.119,
+          "max_decision_ms": 24.962
+        },
+        {
+          "seed": "maneuver-dev-1",
+          "policy": "expert",
+          "distance": 311742.3,
+          "ticks": 3600,
+          "crashed": false,
+          "final_speed": 150.2,
+          "requests": 463,
+          "mean_decision_ms": 7.774,
+          "max_decision_ms": 22.467
+        },
+        {
+          "seed": "maneuver-dev-2",
+          "policy": "expert",
+          "distance": 218819.3,
+          "ticks": 3600,
+          "crashed": false,
+          "final_speed": 123.4,
+          "requests": 471,
+          "mean_decision_ms": 7.883,
+          "max_decision_ms": 30.056
+        },
+        {
+          "seed": "maneuver-dev-3",
+          "policy": "expert",
+          "distance": 213302.7,
+          "ticks": 3600,
+          "crashed": false,
+          "final_speed": 101.2,
+          "requests": 470,
+          "mean_decision_ms": 7.724,
+          "max_decision_ms": 22.225
+        },
+        {
+          "seed": "maneuver-dev-4",
+          "policy": "expert",
+          "distance": 93931.1,
+          "ticks": 3600,
+          "crashed": false,
+          "final_speed": 59.0,
+          "requests": 460,
+          "mean_decision_ms": 12.196,
+          "max_decision_ms": 38.83
+        },
+        {
+          "seed": "maneuver-dev-5",
+          "policy": "expert",
+          "distance": 279311.8,
+          "ticks": 3600,
+          "crashed": false,
+          "final_speed": 112.8,
+          "requests": 466,
+          "mean_decision_ms": 12.285,
+          "max_decision_ms": 35.475
+        },
+        {
+          "seed": "maneuver-dev-6",
+          "policy": "expert",
+          "distance": 46457.5,
+          "ticks": 1381,
+          "crashed": true,
+          "final_speed": 37.8,
+          "requests": 186,
+          "mean_decision_ms": 13.121,
+          "max_decision_ms": 38.048
+        },
+        {
+          "seed": "maneuver-dev-7",
+          "policy": "expert",
+          "distance": 262011.6,
+          "ticks": 3600,
+          "crashed": false,
+          "final_speed": 124.4,
+          "requests": 467,
+          "mean_decision_ms": 13.022,
+          "max_decision_ms": 39.694
+        },
+        {
+          "seed": "maneuver-dev-8",
+          "policy": "expert",
+          "distance": 116215.3,
+          "ticks": 3600,
+          "crashed": false,
+          "final_speed": 81.8,
+          "requests": 470,
+          "mean_decision_ms": 12.407,
+          "max_decision_ms": 34.703
+        },
+        {
+          "seed": "maneuver-dev-9",
+          "policy": "expert",
+          "distance": 329118.0,
+          "ticks": 3600,
+          "crashed": false,
+          "final_speed": 166.0,
+          "requests": 464,
+          "mean_decision_ms": 9.732,
+          "max_decision_ms": 34.079
+        }
+      ],
+      "comparison": {
+        "mean_distance_difference": -23224.07,
+        "paired_bootstrap_95ci": [
+          -84614.86,
+          38158.74
+        ],
+        "distance_ratio": 0.8984421250860051,
+        "seed_wins": 4,
+        "survival_difference": 0.0
+      }
+    },
+    {
+      "label": "maneuver-delay-40",
+      "config": {
+        "horizon": 195,
+        "batch_size": 8,
+        "margin": 6.611122416525868,
+        "uncertainty": 0.07880208294199434,
+        "terminal_speed_weight": 74.66589072102381,
+        "blind_history": 140,
+        "blind_speed_buffer": 1.40146303237539,
+        "stale_velocity_uncertainty": 0.17042267780934428,
+        "lane_change_penalty": 0.49547352667356165,
+        "planner": "maneuver",
+        "maneuver_delay": 40,
+        "recovery_ticks": 120,
+        "adaptive_batch": true
+      },
+      "summary": {
+        "games": 10,
+        "survived": 9,
+        "mean_distance": 241730.42,
+        "median_distance": 265639.5,
+        "min_distance": 79121.4,
+        "max_distance": 316698.7,
+        "mean_decision_ms": 12.408,
+        "survival_rate": 0.9,
+        "p10_distance": 153358.26,
+        "robust_utility": 181485.35028,
+        "survival_95ci": [
+          0.5958499732047615,
+          0.9821237869049271
+        ]
+      },
+      "results": [
+        {
+          "seed": "maneuver-dev-0",
+          "policy": "expert",
+          "distance": 161606.8,
+          "ticks": 2986,
+          "crashed": true,
+          "final_speed": 85.3,
+          "requests": 395,
+          "mean_decision_ms": 14.629,
+          "max_decision_ms": 44.463
+        },
+        {
+          "seed": "maneuver-dev-1",
+          "policy": "expert",
+          "distance": 265247.4,
+          "ticks": 3600,
+          "crashed": false,
+          "final_speed": 113.9,
+          "requests": 466,
+          "mean_decision_ms": 12.784,
+          "max_decision_ms": 36.787
+        },
+        {
+          "seed": "maneuver-dev-2",
+          "policy": "expert",
+          "distance": 316698.7,
+          "ticks": 3600,
+          "crashed": false,
+          "final_speed": 154.2,
+          "requests": 475,
+          "mean_decision_ms": 13.507,
+          "max_decision_ms": 42.175
+        },
+        {
+          "seed": "maneuver-dev-3",
+          "policy": "expert",
+          "distance": 293835.8,
+          "ticks": 3600,
+          "crashed": false,
+          "final_speed": 147.2,
+          "requests": 464,
+          "mean_decision_ms": 13.105,
+          "max_decision_ms": 54.732
+        },
+        {
+          "seed": "maneuver-dev-4",
+          "policy": "expert",
+          "distance": 79121.4,
+          "ticks": 3600,
+          "crashed": false,
+          "final_speed": 56.0,
+          "requests": 460,
+          "mean_decision_ms": 12.396,
+          "max_decision_ms": 31.761
+        },
+        {
+          "seed": "maneuver-dev-5",
+          "policy": "expert",
+          "distance": 305988.4,
+          "ticks": 3600,
+          "crashed": false,
+          "final_speed": 137.2,
+          "requests": 466,
+          "mean_decision_ms": 12.87,
+          "max_decision_ms": 32.47
+        },
+        {
+          "seed": "maneuver-dev-6",
+          "policy": "expert",
+          "distance": 217722.8,
+          "ticks": 3600,
+          "crashed": false,
+          "final_speed": 102.0,
+          "requests": 462,
+          "mean_decision_ms": 12.41,
+          "max_decision_ms": 35.431
+        },
+        {
+          "seed": "maneuver-dev-7",
+          "policy": "expert",
+          "distance": 315181.6,
+          "ticks": 3600,
+          "crashed": false,
+          "final_speed": 154.0,
+          "requests": 465,
+          "mean_decision_ms": 12.942,
+          "max_decision_ms": 36.674
+        },
+        {
+          "seed": "maneuver-dev-8",
+          "policy": "expert",
+          "distance": 195869.7,
+          "ticks": 3600,
+          "crashed": false,
+          "final_speed": 113.8,
+          "requests": 471,
+          "mean_decision_ms": 9.939,
+          "max_decision_ms": 26.217
+        },
+        {
+          "seed": "maneuver-dev-9",
+          "policy": "expert",
+          "distance": 266031.6,
+          "ticks": 3600,
+          "crashed": false,
+          "final_speed": 114.8,
+          "requests": 463,
+          "mean_decision_ms": 9.497,
+          "max_decision_ms": 32.46
+        }
+      ],
+      "comparison": {
+        "mean_distance_difference": 13052.24,
+        "paired_bootstrap_95ci": [
+          -33311.25,
+          62099.14999999999
+        ],
+        "distance_ratio": 1.0570768929506087,
+        "seed_wins": 5,
+        "survival_difference": 0.0
+      }
+    }
+  ]
+}

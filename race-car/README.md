@@ -13,6 +13,14 @@ training data, learned weights, seed lookup, or simulator-state access.
 - [optuna_search.py](optuna_search.py): Bayesian parameter search with crash
     penalties, independent selection/test seeds, and resumable SQLite storage.
 - [EXPERT.md](EXPERT.md): mathematics, usage, results and limitations.
+- [MANEUVER.md](MANEUVER.md): optional two-stage maneuver planner with recovery
+    checks, adaptive batching and end-of-game scoring. On 50 new paired seeds it
+    improved mean distance **13.4%** at the same observed 49/50 completion rate,
+    but decisions were much slower. The existing Optuna preset remains deployed.
+- [DRIFT.md](DRIFT.md): first 500k-oriented increment: exact distance-loss
+    accounting and optional accelerate-while-drifting paths. Higher mean distance
+    on development seeds came with **more crashes**; this variant is research-only,
+    not deployed, and has not reached 500k.
 
 **Optuna held-out results:** 98/100 complete games, mean distance **201,242**,
 best **413,092**. On the same 100 fresh seeds the prior defaults averaged

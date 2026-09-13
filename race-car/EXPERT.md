@@ -1,5 +1,10 @@
 # Hand-written race-car expert
 
+An optional [maneuver planner](MANEUVER.md) now adds throttle-first sequences,
+batch-end recovery screening and remaining-time scoring. It is available via
+[configs/maneuver-experimental.json](configs/maneuver-experimental.json), not
+enabled by default; see its separate fresh-seed comparison and latency caveat.
+
 **Update:** the API and demo now load the Optuna-selected preset from
 [configs/expert.json](configs/expert.json). On 100 new paired seeds it increased
 mean distance by **35.5%**, finishing **98/100** games. See [OPTUNA.md](OPTUNA.md)

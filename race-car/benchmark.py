@@ -21,8 +21,10 @@ import time
 os.environ.setdefault("PYGAME_HIDE_SUPPORT_PROMPT", "1")
 os.environ.setdefault("SDL_AUDIODRIVER", "dummy")
 
+import numpy as np
 import pygame
 
+from distance_diagnostics import DistanceDiagnostics
 from expert import Config, ExpertController, load_config
 from src.game import core
 
@@ -68,6 +70,7 @@ def run_episode(seed: str, policy="expert", config: Config | None = None,
     screen = pygame.display.set_mode((core.SCREEN_WIDTH, core.SCREEN_HEIGHT)) if visual else None
     clock = pygame.time.Clock() if visual else None
     state = core.STATE
+    diagnostics = DistanceDiagnostics(state.ego.velocity.x, max_ticks)
     while state.ticks < max_ticks and not state.crashed:
         if visual:
             if any(event.type == pygame.QUIT for event in pygame.event.get()):
@@ -81,20 +84,27 @@ def run_episode(seed: str, policy="expert", config: Config | None = None,
             else:
                 queue.extend(["ACCELERATE" if policy == "accelerate" else "NOTHING"] * 8)
             latencies.append((time.perf_counter() - start) * 1000)
+            diagnostics.record_decision(getattr(driver, "last_plan", None) if policy == "expert" else None)
             if trace:
                 history.append({**obs, "plan": dict(driver.last_plan), "actions": list(queue),
                                 "actual_y": state.ego.rect.centery,
                                 "traffic": [{"lane": core.STATE.road.lanes.index(c.lane), "x": c.rect.centerx - 800,
                                              "speed": c.velocity.x} for c in state.cars if c is not state.ego],
                                 "tracks": {lane: asdict(track) for lane, track in driver.tracks.items()}})
-        step(queue.popleft())
+        action = queue.popleft()
+        previous_speed = state.ego.velocity.x
+        step(action)
+        diagnostics.record_tick(action, previous_speed, state.ego.velocity.x)
         if screen is not None:
             render(screen, state)
+    p95, p99 = np.percentile(latencies, [95, 99]) if latencies else (0.0, 0.0)
     result = {"seed": seed, "policy": policy, "distance": round(state.distance, 3),
               "ticks": state.ticks, "crashed": state.crashed,
               "final_speed": round(state.ego.velocity.x, 3), "requests": len(latencies),
-              "mean_decision_ms": round(statistics.mean(latencies), 3),
-              "max_decision_ms": round(max(latencies), 3)}
+              "mean_decision_ms": round(statistics.mean(latencies), 3) if latencies else 0.0,
+              "max_decision_ms": round(max(latencies), 3) if latencies else 0.0,
+              "p95_decision_ms": round(float(p95), 3), "p99_decision_ms": round(float(p99), 3),
+              "diagnostics": diagnostics.result(state.distance)}
     if trace:
         result["trace"] = history
     return result
@@ -102,15 +112,24 @@ def run_episode(seed: str, policy="expert", config: Config | None = None,
 
 def summarize(results):
     distances = [r["distance"] for r in results]
+    successes = sum(not r["crashed"] and r.get("diagnostics", {}).get("actual_distance", r["distance"]) >= 500000
+                    for r in results)
     return {"games": len(results), "survived": sum(not r["crashed"] and r["ticks"] == 3600 for r in results),
-            "mean_distance": round(statistics.mean(distances), 3),
-            "median_distance": round(statistics.median(distances), 3),
-            "min_distance": min(distances), "max_distance": max(distances),
-            "mean_decision_ms": round(statistics.mean(r["mean_decision_ms"] for r in results), 3)}
+            "mean_distance": round(statistics.mean(distances), 3) if distances else 0.0,
+            "median_distance": round(statistics.median(distances), 3) if distances else 0.0,
+            "min_distance": min(distances) if distances else 0.0,
+            "max_distance": max(distances) if distances else 0.0,
+            "mean_decision_ms": round(statistics.mean(r["mean_decision_ms"] for r in results), 3) if results else 0.0,
+            "p10_distance": round(float(np.percentile(distances, 10)), 3) if distances else 0.0,
+            "success_500k_count": successes,
+            "success_500k_rate": successes / len(results) if results else 0.0}
 
 
 def provenance():
     return {"controller_sha256": hashlib.sha256(Path(__file__).with_name("expert.py").read_bytes()).hexdigest(),
+            "maneuver_sha256": hashlib.sha256(Path(__file__).with_name("maneuver.py").read_bytes()).hexdigest(),
+            "drift_sha256": hashlib.sha256(Path(__file__).with_name("drift.py").read_bytes()).hexdigest(),
+            "diagnostics_sha256": hashlib.sha256(Path(__file__).with_name("distance_diagnostics.py").read_bytes()).hexdigest(),
             "python": sys.version.split()[0],
             "packages": {name: importlib.metadata.version(name) for name in ("numpy", "pygame", "fastapi", "pydantic")}}
 
@@ -127,6 +146,7 @@ def main():
     parser.add_argument("--margin", type=float)
     parser.add_argument("--uncertainty", type=float)
     parser.add_argument("--blind-history", type=int)
+    parser.add_argument("--planner", choices=("legacy", "maneuver", "drift"))
     parser.add_argument("--max-ticks", type=int, default=3600)
     parser.add_argument("--sensor-removal", type=int, default=0)
     parser.add_argument("--visual", action="store_true")
@@ -139,7 +159,7 @@ def main():
         os.environ.setdefault("SDL_VIDEODRIVER", "dummy")
     pygame.init()
     parameters = asdict(load_config(args.config) if args.config else Config())
-    for name in ("horizon", "batch_size", "margin", "uncertainty", "blind_history"):
+    for name in ("horizon", "batch_size", "margin", "uncertainty", "blind_history", "planner"):
         if getattr(args, name) is not None:
             parameters[name] = getattr(args, name)
     config = Config(**parameters)

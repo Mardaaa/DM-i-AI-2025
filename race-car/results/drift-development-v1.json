@@ -1,0 +1,3969 @@
+{
+  "provenance": {
+    "controller_sha256": "c9a8ab430622288f8bede4e4a677920ea5784748ac10375f41cdb30893dc15bd",
+    "maneuver_sha256": "067c8406223b2a9fc7724d643474dff19d7bf901eb6307826839da08864e4865",
+    "drift_sha256": "c6664a59f7f312888098f3d713118e3d7fcfe6566c8bc4d3e995ed2278cd2a99",
+    "diagnostics_sha256": "aba989a311c1c4ae606906f573b06bbb1281e01d0abc2fe13fdbb73cd0d545bf",
+    "python": "3.12.3",
+    "packages": {
+      "numpy": "2.5.3",
+      "pygame": "2.6.1",
+      "fastapi": "0.141.1",
+      "pydantic": "2.13.5"
+    }
+  },
+  "source_hashes": {
+    "expert.py": "c9a8ab430622288f8bede4e4a677920ea5784748ac10375f41cdb30893dc15bd",
+    "benchmark.py": "9df08c7eab41626904b2bfde9c5aa98fe820a9333b8e09227571630a36a98b63",
+    "optuna_search.py": "5ab5b5a5b4fa4697bd36d27a5070ecb5443c5aeb26866c3db4c549546e4d0f89",
+    "src/elements/car.py": "4cb0fdf52d390b2f81f2058efefa2c6e9a17b656642c2750ad6252916cc9d420",
+    "src/elements/road.py": "efe3c6fda70f4c96cf4b6ac4390bc2d5e81743aa98ed8dc0ce73a1941592becd",
+    "src/elements/sensor.py": "f5eb50a1405e2bfe0fc818d2b03700f306fa575e29f128839f6ff1e4f6fe0557",
+    "src/elements/wall.py": "602a59eabfcb6cd1b52bce37adf8a0dfeac23f8bd5bfbc1ed28e079612b27a55",
+    "src/game/core.py": "f2fc2c4b9a13f68c7027c33da839e4e7f1b9d4829efa9c96fa5875986c6ef362",
+    "src/mathematics/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/mathematics/collision.py": "c2253cab067ff222e5e5dc63db4feb6a3c311d25f3045c8f43766df26aeaf905",
+    "src/mathematics/randomizer.py": "5886d41041a7d50e6daa8ef36f68da048656df900b3d1f8cac7a369f000cd55e",
+    "src/mathematics/vector.py": "9e8cc29361553abd8458daf8c57f5145df3a3fdc66b7358c63615998c5c81d8f",
+    "public/assets/bluecar.png": "e43aa09dc36b197a245b0c182b51190c9cb7ab3f7f3c2259b4d6c612b6a8e19b",
+    "public/assets/redcar.png": "840e681237fbd440c0cc330c3523315242e94e5623295dbb2ed7fcb19ed8734f",
+    "public/assets/yellowcar.png": "df3df8caefd8e72c06118501e2d36813a402990151a13bd1d61002d327d1623e"
+  },
+  "seeds": [
+    "drift-dev-v1-0",
+    "drift-dev-v1-1",
+    "drift-dev-v1-2",
+    "drift-dev-v1-3",
+    "drift-dev-v1-4",
+    "drift-dev-v1-5",
+    "drift-dev-v1-6",
+    "drift-dev-v1-7",
+    "drift-dev-v1-8",
+    "drift-dev-v1-9",
+    "drift-dev-v1-10",
+    "drift-dev-v1-11"
+  ],
+  "candidates": [
+    {
+      "label": "maneuver",
+      "config": {
+        "horizon": 195,
+        "batch_size": 8,
+        "margin": 6.611122416525868,
+        "uncertainty": 0.07880208294199434,
+        "terminal_speed_weight": 74.66589072102381,
+        "blind_history": 140,
+        "blind_speed_buffer": 1.40146303237539,
+        "stale_velocity_uncertainty": 0.17042267780934428,
+        "lane_change_penalty": 0.49547352667356165,
+        "planner": "maneuver",
+        "maneuver_delay": 12,
+        "recovery_ticks": 120,
+        "adaptive_batch": true,
+        "drift_speed": 2.0
+      },
+      "summary": {
+        "games": 12,
+        "survived": 11,
+        "mean_distance": 175020.042,
+        "median_distance": 173985.25,
+        "min_distance": 1972.9,
+        "max_distance": 279496.6,
+        "mean_decision_ms": 7.979,
+        "p10_distance": 113561.38,
+        "success_500k_count": 0,
+        "success_500k_rate": 0.0,
+        "survival_rate": 0.9166666666666666,
+        "robust_utility": 136736.9823722222,
+        "survival_95ci": [
+          0.646120088858883,
+          0.9851349055950829
+        ]
+      },
+      "results": [
+        {
+          "seed": "drift-dev-v1-0",
+          "policy": "expert",
+          "distance": 206871.1,
+          "ticks": 3600,
+          "crashed": false,
+          "final_speed": 121.4,
+          "requests": 472,
+          "mean_decision_ms": 7.067,
+          "max_decision_ms": 23.31,
+          "p95_decision_ms": 12.38,
+          "p99_decision_ms": 19.999,
+          "diagnostics": {
+            "attribution": "diagnostic_only_not_avoidability_or_same_traffic_counterfactual",
+            "initial_speed": 10.0,
+            "max_ticks": 3600,
+            "executed_ticks": 3600,
+            "remaining_ticks": 0,
+            "ceiling": 684180.0,
+            "actual_distance": 206871.1000000005,
+            "distance_loss": 477308.8999999995,
+            "action_opportunity_loss": 477308.9000000013,
+            "termination_loss": 0.0,
+            "identity_residual": -1.8044374883174896e-09,
+            "action_counts": {
+              "ACCELERATE": 1598,
+              "DECELERATE": 484,
+              "NOTHING": 752,
+              "STEER_RIGHT": 403,
+              "STEER_LEFT": 363
+            },
+            "loss_by_action": {
+              "ACCELERATE": 1.932034893181722e-09,
+              "DECELERATE": 192859.59999999954,
+              "NOTHING": 138152.79999999987,
+              "STEER_RIGHT": 73300.6,
+              "STEER_LEFT": 72995.89999999997
+            },
+            "phases": {
+              "early": {
+                "action_counts": {
+                  "ACCELERATE": 392,
+                  "DECELERATE": 208,
+                  "NOTHING": 304,
+                  "STEER_RIGHT": 133,
+                  "STEER_LEFT": 163
+                },
+                "loss_by_action": {
+                  "ACCELERATE": -5.48686762691375e-10,
+                  "DECELERATE": 130920.00000000013,
+                  "NOTHING": 93773.59999999998,
+                  "STEER_RIGHT": 38843.5,
+                  "STEER_LEFT": 46225.69999999999
+                }
+              },
+              "middle": {
+                "action_counts": {
+                  "STEER_RIGHT": 170,
+                  "ACCELERATE": 598,
+                  "DECELERATE": 172,
+                  "STEER_LEFT": 140,
+                  "NOTHING": 120
+                },
+                "loss_by_action": {
+                  "STEER_RIGHT": 30668.1,
+                  "ACCELERATE": 4.3299744345581814e-10,
+                  "DECELERATE": 56703.59999999919,
+                  "STEER_LEFT": 23735.2,
+                  "NOTHING": 17750.000000000004
+                }
+              },
+              "late": {
+                "action_counts": {
+                  "ACCELERATE": 608,
+                  "NOTHING": 328,
+                  "DECELERATE": 104,
+                  "STEER_RIGHT": 100,
+                  "STEER_LEFT": 60
+                },
+                "loss_by_action": {
+                  "ACCELERATE": 2.047724212417279e-09,
+                  "NOTHING": 26629.200000000004,
+                  "DECELERATE": 5235.999999999852,
+                  "STEER_RIGHT": 3788.9999999999995,
+                  "STEER_LEFT": 3035.0000000000005
+                }
+              }
+            },
+            "decision_counts": {
+              "decisions": 472,
+              "decisions_with_plan": 472,
+              "recovery_checks_reported_decisions": 472,
+              "recovery_checks_sum": 578,
+              "recovery_checks_positive_decisions": 472,
+              "recovery_vetoes_reported_decisions": 472,
+              "recovery_vetoes_sum": 128,
+              "recovery_vetoes_positive_decisions": 23,
+              "recovery_safe_reported_decisions": 472,
+              "recovery_safe_decisions": 450,
+              "recovery_unsafe_decisions": 22,
+              "safe_ticks_reported_decisions": 472,
+              "selected_zero_safe_ticks_decisions": 0,
+              "horizon_reported_decisions": 472,
+              "safe_horizon_comparable_decisions": 472,
+              "selected_short_horizon_decisions": 21,
+              "target_reported_decisions": 472,
+              "target_comparable_decisions": 471,
+              "target_switch_decisions": 15
+            }
+          }
+        },
+        {
+          "seed": "drift-dev-v1-1",
+          "policy": "expert",
+          "distance": 231798.3,
+          "ticks": 3600,
+          "crashed": false,
+          "final_speed": 124.6,
+          "requests": 464,
+          "mean_decision_ms": 7.131,
+          "max_decision_ms": 33.53,
+          "p95_decision_ms": 7.45,
+          "p99_decision_ms": 33.25,
+          "diagnostics": {
+            "attribution": "diagnostic_only_not_avoidability_or_same_traffic_counterfactual",
+            "initial_speed": 10.0,
+            "max_ticks": 3600,
+            "executed_ticks": 3600,
+            "remaining_ticks": 0,
+            "ceiling": 684180.0,
+            "actual_distance": 231798.29999999827,
+            "distance_loss": 452381.7000000017,
+            "action_opportunity_loss": 452381.70000000164,
+            "termination_loss": 0.0,
+            "identity_residual": 5.820766091346741e-11,
+            "action_counts": {
+              "ACCELERATE": 1562,
+              "NOTHING": 1192,
+              "DECELERATE": 416,
+              "STEER_LEFT": 235,
+              "STEER_RIGHT": 195
+            },
+            "loss_by_action": {
+              "ACCELERATE": 3.650859697890141e-09,
+              "NOTHING": 215504.40000000002,
+              "DECELERATE": 155916.79999999795,
+              "STEER_LEFT": 40405.5,
+              "STEER_RIGHT": 40554.99999999999
+            },
+            "phases": {
+              "early": {
+                "action_counts": {
+                  "ACCELERATE": 472,
+                  "NOTHING": 390,
+                  "DECELERATE": 128,
+                  "STEER_LEFT": 105,
+                  "STEER_RIGHT": 105
+                },
+                "loss_by_action": {
+                  "ACCELERATE": -9.62522617165007e-10,
+                  "NOTHING": 116936.50000000001,
+                  "DECELERATE": 87049.59999999995,
+                  "STEER_LEFT": 31024.0,
+                  "STEER_RIGHT": 31475.899999999994
+                }
+              },
+              "middle": {
+                "action_counts": {
+                  "NOTHING": 392,
+                  "ACCELERATE": 560,
+                  "DECELERATE": 160,
+                  "STEER_LEFT": 48,
+                  "STEER_RIGHT": 40
+                },
+                "loss_by_action": {
+                  "NOTHING": 65739.6,
+                  "ACCELERATE": 3.251842128904059e-09,
+                  "DECELERATE": 50575.99999999856,
+                  "STEER_LEFT": 6732.0,
+                  "STEER_RIGHT": 5571.599999999999
+                }
+              },
+              "late": {
+                "action_counts": {
+                  "NOTHING": 410,
+                  "DECELERATE": 128,
+                  "ACCELERATE": 530,
+                  "STEER_RIGHT": 50,
+                  "STEER_LEFT": 82
+                },
+                "loss_by_action": {
+                  "NOTHING": 32828.299999999996,
+                  "DECELERATE": 18291.199999999477,
+                  "ACCELERATE": 1.361540186151089e-09,
+                  "STEER_RIGHT": 3507.5,
+                  "STEER_LEFT": 2649.4999999999995
+                }
+              }
+            },
+            "decision_counts": {
+              "decisions": 464,
+              "decisions_with_plan": 464,
+              "recovery_checks_reported_decisions": 464,
+              "recovery_checks_sum": 598,
+              "recovery_checks_positive_decisions": 464,
+              "recovery_vetoes_reported_decisions": 464,
+              "recovery_vetoes_sum": 148,
+              "recovery_vetoes_positive_decisions": 14,
+              "recovery_safe_reported_decisions": 464,
+              "recovery_safe_decisions": 450,
+              "recovery_unsafe_decisions": 14,
+              "safe_ticks_reported_decisions": 464,
+              "selected_zero_safe_ticks_decisions": 0,
+              "horizon_reported_decisions": 464,
+              "safe_horizon_comparable_decisions": 464,
+              "selected_short_horizon_decisions": 14,
+              "target_reported_decisions": 464,
+              "target_comparable_decisions": 463,
+              "target_switch_decisions": 9
+            }
+          }
+        },
+        {
+          "seed": "drift-dev-v1-2",
+          "policy": "expert",
+          "distance": 1972.9,
+          "ticks": 145,
+          "crashed": true,
+          "final_speed": 11.1,
+          "requests": 28,
+          "mean_decision_ms": 13.782,
+          "max_decision_ms": 22.973,
+          "p95_decision_ms": 17.805,
+          "p99_decision_ms": 21.605,
+          "diagnostics": {
+            "attribution": "diagnostic_only_not_avoidability_or_same_traffic_counterfactual",
+            "initial_speed": 10.0,
+            "max_ticks": 3600,
+            "executed_ticks": 145,
+            "remaining_ticks": 3455,
+            "ceiling": 684180.0,
+            "actual_distance": 1972.8999999999992,
+            "distance_loss": 682207.1,
+            "action_opportunity_loss": 46832.6,
+            "termination_loss": 635374.5,
+            "identity_residual": 0.0,
+            "action_counts": {
+              "ACCELERATE": 78,
+              "DECELERATE": 67
+            },
+            "loss_by_action": {
+              "ACCELERATE": 2.4748675331309755e-11,
+              "DECELERATE": 46832.59999999998
+            },
+            "phases": {
+              "early": {
+                "action_counts": {
+                  "ACCELERATE": 78,
+                  "DECELERATE": 67
+                },
+                "loss_by_action": {
+                  "ACCELERATE": 2.4748675331309755e-11,
+                  "DECELERATE": 46832.59999999998
+                }
+              },
+              "middle": {
+                "action_counts": {},
+                "loss_by_action": {}
+              },
+              "late": {
+                "action_counts": {},
+                "loss_by_action": {}
+              }
+            },
+            "decision_counts": {
+              "decisions": 28,
+              "decisions_with_plan": 28,
+              "recovery_checks_reported_decisions": 28,
+              "recovery_checks_sum": 110,
+              "recovery_checks_positive_decisions": 28,
+              "recovery_vetoes_reported_decisions": 28,
+              "recovery_vetoes_sum": 101,
+              "recovery_vetoes_positive_decisions": 19,
+              "recovery_safe_reported_decisions": 28,
+              "recovery_safe_decisions": 9,
+              "recovery_unsafe_decisions": 19,
+              "safe_ticks_reported_decisions": 28,
+              "selected_zero_safe_ticks_decisions": 2,
+              "horizon_reported_decisions": 28,
+              "safe_horizon_comparable_decisions": 28,
+              "selected_short_horizon_decisions": 19,
+              "target_reported_decisions": 28,
+              "target_comparable_decisions": 27,
+              "target_switch_decisions": 0
+            }
+          }
+        },
+        {
+          "seed": "drift-dev-v1-3",
+          "policy": "expert",
+          "distance": 121551.7,
+          "ticks": 3600,
+          "crashed": false,
+          "final_speed": 78.0,
+          "requests": 469,
+          "mean_decision_ms": 7.16,
+          "max_decision_ms": 24.995,
+          "p95_decision_ms": 7.875,
+          "p99_decision_ms": 18.673,
+          "diagnostics": {
+            "attribution": "diagnostic_only_not_avoidability_or_same_traffic_counterfactual",
+            "initial_speed": 10.0,
+            "max_ticks": 3600,
+            "executed_ticks": 3600,
+            "remaining_ticks": 0,
+            "ceiling": 684180.0,
+            "actual_distance": 121551.70000000048,
+            "distance_loss": 562628.2999999996,
+            "action_opportunity_loss": 562628.2999999991,
+            "termination_loss": 0.0,
+            "identity_residual": 4.656612873077393e-10,
+            "action_counts": {
+              "ACCELERATE": 1287,
+              "DECELERATE": 607,
+              "STEER_LEFT": 361,
+              "NOTHING": 1024,
+              "STEER_RIGHT": 321
+            },
+            "loss_by_action": {
+              "ACCELERATE": -1.076328248750258e-09,
+              "DECELERATE": 237310.20000000022,
+              "STEER_LEFT": 60565.29999999999,
+              "NOTHING": 204242.39999999997,
+              "STEER_RIGHT": 60510.39999999997
+            },
+            "phases": {
+              "early": {
+                "action_counts": {
+                  "ACCELERATE": 216,
+                  "DECELERATE": 208,
+                  "STEER_LEFT": 128,
+                  "NOTHING": 520,
+                  "STEER_RIGHT": 128
+                },
+                "loss_by_action": {
+                  "ACCELERATE": 1.6372270206232997e-10,
+                  "DECELERATE": 135758.39999999994,
+                  "STEER_LEFT": 38409.399999999994,
+                  "NOTHING": 149550.80000000002,
+                  "STEER_RIGHT": 37965.0
+                }
+              },
+              "middle": {
+                "action_counts": {
+                  "ACCELERATE": 701,
+                  "NOTHING": 200,
+                  "DECELERATE": 151,
+                  "STEER_LEFT": 74,
+                  "STEER_RIGHT": 74
+                },
+                "loss_by_action": {
+                  "ACCELERATE": -1.327249005145248e-09,
+                  "NOTHING": 35297.2,
+                  "DECELERATE": 60783.00000000042,
+                  "STEER_LEFT": 13784.099999999999,
+                  "STEER_RIGHT": 14230.900000000001
+                }
+              },
+              "late": {
+                "action_counts": {
+                  "ACCELERATE": 370,
+                  "DECELERATE": 248,
+                  "STEER_LEFT": 159,
+                  "STEER_RIGHT": 119,
+                  "NOTHING": 304
+                },
+                "loss_by_action": {
+                  "ACCELERATE": 8.719805433266004e-11,
+                  "DECELERATE": 40768.8,
+                  "STEER_LEFT": 8371.800000000001,
+                  "STEER_RIGHT": 8314.5,
+                  "NOTHING": 19394.4
+                }
+              }
+            },
+            "decision_counts": {
+              "decisions": 469,
+              "decisions_with_plan": 469,
+              "recovery_checks_reported_decisions": 469,
+              "recovery_checks_sum": 556,
+              "recovery_checks_positive_decisions": 469,
+              "recovery_vetoes_reported_decisions": 469,
+              "recovery_vetoes_sum": 105,
+              "recovery_vetoes_positive_decisions": 18,
+              "recovery_safe_reported_decisions": 469,
+              "recovery_safe_decisions": 451,
+              "recovery_unsafe_decisions": 18,
+              "safe_ticks_reported_decisions": 469,
+              "selected_zero_safe_ticks_decisions": 0,
+              "horizon_reported_decisions": 469,
+              "safe_horizon_comparable_decisions": 469,
+              "selected_short_horizon_decisions": 18,
+              "target_reported_decisions": 469,
+              "target_comparable_decisions": 468,
+              "target_switch_decisions": 13
+            }
+          }
+        },
+        {
+          "seed": "drift-dev-v1-4",
+          "policy": "expert",
+          "distance": 157266.6,
+          "ticks": 3600,
+          "crashed": false,
+          "final_speed": 119.2,
+          "requests": 471,
+          "mean_decision_ms": 7.028,
+          "max_decision_ms": 28.089,
+          "p95_decision_ms": 7.83,
+          "p99_decision_ms": 17.937,
+          "diagnostics": {
+            "attribution": "diagnostic_only_not_avoidability_or_same_traffic_counterfactual",
+            "initial_speed": 10.0,
+            "max_ticks": 3600,
+            "executed_ticks": 3600,
+            "remaining_ticks": 0,
+            "ceiling": 684180.0,
+            "actual_distance": 157266.5999999992,
+            "distance_loss": 526913.4000000008,
+            "action_opportunity_loss": 526913.4000000004,
+            "termination_loss": 0.0,
+            "identity_residual": 4.656612873077393e-10,
+            "action_counts": {
+              "ACCELERATE": 1404,
+              "DECELERATE": 312,
+              "NOTHING": 1288,
+              "STEER_LEFT": 298,
+              "STEER_RIGHT": 298
+            },
+            "loss_by_action": {
+              "ACCELERATE": 2.873818405468853e-10,
+              "DECELERATE": 138138.40000000017,
+              "NOTHING": 313912.39999999997,
+              "STEER_LEFT": 37656.700000000004,
+              "STEER_RIGHT": 37205.9
+            },
+            "phases": {
+              "early": {
+                "action_counts": {
+                  "ACCELERATE": 272,
+                  "DECELERATE": 104,
+                  "NOTHING": 742,
+                  "STEER_LEFT": 41,
+                  "STEER_RIGHT": 41
+                },
+                "loss_by_action": {
+                  "ACCELERATE": -3.1467806138607557e-10,
+                  "DECELERATE": 71568.79999999999,
+                  "NOTHING": 224134.90000000002,
+                  "STEER_LEFT": 10734.0,
+                  "STEER_RIGHT": 10507.5
+                }
+              },
+              "middle": {
+                "action_counts": {
+                  "NOTHING": 450,
+                  "ACCELERATE": 374,
+                  "DECELERATE": 144,
+                  "STEER_LEFT": 116,
+                  "STEER_RIGHT": 116
+                },
+                "loss_by_action": {
+                  "NOTHING": 81121.50000000001,
+                  "ACCELERATE": -9.219389418557711e-10,
+                  "DECELERATE": 59492.80000000041,
+                  "STEER_LEFT": 20028.399999999998,
+                  "STEER_RIGHT": 20033.6
+                }
+              },
+              "late": {
+                "action_counts": {
+                  "ACCELERATE": 758,
+                  "NOTHING": 96,
+                  "DECELERATE": 64,
+                  "STEER_RIGHT": 141,
+                  "STEER_LEFT": 141
+                },
+                "loss_by_action": {
+                  "ACCELERATE": 1.523998843788732e-09,
+                  "NOTHING": 8656.0,
+                  "DECELERATE": 7076.799999999799,
+                  "STEER_RIGHT": 6664.8,
+                  "STEER_LEFT": 6894.299999999999
+                }
+              }
+            },
+            "decision_counts": {
+              "decisions": 471,
+              "decisions_with_plan": 471,
+              "recovery_checks_reported_decisions": 471,
+              "recovery_checks_sum": 514,
+              "recovery_checks_positive_decisions": 471,
+              "recovery_vetoes_reported_decisions": 471,
+              "recovery_vetoes_sum": 52,
+              "recovery_vetoes_positive_decisions": 9,
+              "recovery_safe_reported_decisions": 471,
+              "recovery_safe_decisions": 462,
+              "recovery_unsafe_decisions": 9,
+              "safe_ticks_reported_decisions": 471,
+              "selected_zero_safe_ticks_decisions": 0,
+              "horizon_reported_decisions": 471,
+              "safe_horizon_comparable_decisions": 471,
+              "selected_short_horizon_decisions": 9,
+              "target_reported_decisions": 471,
+              "target_comparable_decisions": 470,
+              "target_switch_decisions": 10
+            }
+          }
+        },
+        {
+          "seed": "drift-dev-v1-5",
+          "policy": "expert",
+          "distance": 117240.4,
+          "ticks": 3600,
+          "crashed": false,
+          "final_speed": 39.6,
+          "requests": 462,
+          "mean_decision_ms": 7.304,
+          "max_decision_ms": 18.344,
+          "p95_decision_ms": 7.852,
+          "p99_decision_ms": 8.916,
+          "diagnostics": {
+            "attribution": "diagnostic_only_not_avoidability_or_same_traffic_counterfactual",
+            "initial_speed": 10.0,
+            "max_ticks": 3600,
+            "executed_ticks": 3600,
+            "remaining_ticks": 0,
+            "ceiling": 684180.0,
+            "actual_distance": 117240.39999999575,
+            "distance_loss": 566939.6000000043,
+            "action_opportunity_loss": 566939.5999999992,
+            "termination_loss": 0.0,
+            "identity_residual": 5.122274160385132e-09,
+            "action_counts": {
+              "ACCELERATE": 648,
+              "NOTHING": 2375,
+              "DECELERATE": 352,
+              "STEER_RIGHT": 114,
+              "STEER_LEFT": 111
+            },
+            "loss_by_action": {
+              "ACCELERATE": -1.4475233234279017e-09,
+              "NOTHING": 338190.30000000005,
+              "DECELERATE": 171881.6000000005,
+              "STEER_RIGHT": 28663.2,
+              "STEER_LEFT": 28204.500000000004
+            },
+            "phases": {
+              "early": {
+                "action_counts": {
+                  "ACCELERATE": 520,
+                  "NOTHING": 264,
+                  "DECELERATE": 220,
+                  "STEER_RIGHT": 98,
+                  "STEER_LEFT": 98
+                },
+                "loss_by_action": {
+                  "ACCELERATE": -1.2666067084055044e-09,
+                  "NOTHING": 82554.0,
+                  "DECELERATE": 132714.80000000028,
+                  "STEER_RIGHT": 28598.4,
+                  "STEER_LEFT": 28149.800000000003
+                }
+              },
+              "middle": {
+                "action_counts": {
+                  "DECELERATE": 76,
+                  "NOTHING": 1076,
+                  "ACCELERATE": 48
+                },
+                "loss_by_action": {
+                  "DECELERATE": 30956.400000000223,
+                  "NOTHING": 191766.60000000003,
+                  "ACCELERATE": -1.2478218458511492e-10
+                }
+              },
+              "late": {
+                "action_counts": {
+                  "NOTHING": 1035,
+                  "ACCELERATE": 80,
+                  "DECELERATE": 56,
+                  "STEER_LEFT": 13,
+                  "STEER_RIGHT": 16
+                },
+                "loss_by_action": {
+                  "NOTHING": 63869.7,
+                  "ACCELERATE": -5.613443043728239e-11,
+                  "DECELERATE": 8210.400000000058,
+                  "STEER_LEFT": 54.7,
+                  "STEER_RIGHT": 64.80000000000001
+                }
+              }
+            },
+            "decision_counts": {
+              "decisions": 462,
+              "decisions_with_plan": 462,
+              "recovery_checks_reported_decisions": 462,
+              "recovery_checks_sum": 474,
+              "recovery_checks_positive_decisions": 462,
+              "recovery_vetoes_reported_decisions": 462,
+              "recovery_vetoes_sum": 15,
+              "recovery_vetoes_positive_decisions": 3,
+              "recovery_safe_reported_decisions": 462,
+              "recovery_safe_decisions": 459,
+              "recovery_unsafe_decisions": 3,
+              "safe_ticks_reported_decisions": 462,
+              "selected_zero_safe_ticks_decisions": 0,
+              "horizon_reported_decisions": 462,
+              "safe_horizon_comparable_decisions": 462,
+              "selected_short_horizon_decisions": 3,
+              "target_reported_decisions": 462,
+              "target_comparable_decisions": 461,
+              "target_switch_decisions": 6
+            }
+          }
+        },
+        {
+          "seed": "drift-dev-v1-6",
+          "policy": "expert",
+          "distance": 113152.6,
+          "ticks": 3600,
+          "crashed": false,
+          "final_speed": 99.8,
+          "requests": 471,
+          "mean_decision_ms": 7.528,
+          "max_decision_ms": 23.258,
+          "p95_decision_ms": 8.243,
+          "p99_decision_ms": 19.023,
+          "diagnostics": {
+            "attribution": "diagnostic_only_not_avoidability_or_same_traffic_counterfactual",
+            "initial_speed": 10.0,
+            "max_ticks": 3600,
+            "executed_ticks": 3600,
+            "remaining_ticks": 0,
+            "ceiling": 684180.0,
+            "actual_distance": 113152.59999999955,
+            "distance_loss": 571027.4000000005,
+            "action_opportunity_loss": 571027.3999999998,
+            "termination_loss": 0.0,
+            "identity_residual": 6.984919309616089e-10,
+            "action_counts": {
+              "ACCELERATE": 1211,
+              "DECELERATE": 313,
+              "NOTHING": 1488,
+              "STEER_RIGHT": 294,
+              "STEER_LEFT": 294
+            },
+            "loss_by_action": {
+              "ACCELERATE": -5.618065457291266e-10,
+              "DECELERATE": 132148.00000000038,
+              "NOTHING": 374650.39999999997,
+              "STEER_RIGHT": 32227.7,
+              "STEER_LEFT": 32001.300000000007
+            },
+            "phases": {
+              "early": {
+                "action_counts": {
+                  "ACCELERATE": 120,
+                  "DECELERATE": 120,
+                  "NOTHING": 960
+                },
+                "loss_by_action": {
+                  "ACCELERATE": -2.7482571773873588e-11,
+                  "DECELERATE": 80632.80000000005,
+                  "NOTHING": 278748.79999999993
+                }
+              },
+              "middle": {
+                "action_counts": {
+                  "NOTHING": 424,
+                  "ACCELERATE": 377,
+                  "DECELERATE": 131,
+                  "STEER_RIGHT": 134,
+                  "STEER_LEFT": 134
+                },
+                "loss_by_action": {
+                  "NOTHING": 90226.0,
+                  "ACCELERATE": -5.757090082436633e-10,
+                  "DECELERATE": 42065.00000000019,
+                  "STEER_RIGHT": 21762.100000000002,
+                  "STEER_LEFT": 21540.500000000004
+                }
+              },
+              "late": {
+                "action_counts": {
+                  "ACCELERATE": 714,
+                  "STEER_LEFT": 160,
+                  "DECELERATE": 62,
+                  "STEER_RIGHT": 160,
+                  "NOTHING": 104
+                },
+                "loss_by_action": {
+                  "ACCELERATE": 4.138503428841034e-11,
+                  "STEER_LEFT": 10460.8,
+                  "DECELERATE": 9450.200000000043,
+                  "STEER_RIGHT": 10465.6,
+                  "NOTHING": 5675.6
+                }
+              }
+            },
+            "decision_counts": {
+              "decisions": 471,
+              "decisions_with_plan": 471,
+              "recovery_checks_reported_decisions": 471,
+              "recovery_checks_sum": 511,
+              "recovery_checks_positive_decisions": 471,
+              "recovery_vetoes_reported_decisions": 471,
+              "recovery_vetoes_sum": 49,
+              "recovery_vetoes_positive_decisions": 9,
+              "recovery_safe_reported_decisions": 471,
+              "recovery_safe_decisions": 462,
+              "recovery_unsafe_decisions": 9,
+              "safe_ticks_reported_decisions": 471,
+              "selected_zero_safe_ticks_decisions": 0,
+              "horizon_reported_decisions": 471,
+              "safe_horizon_comparable_decisions": 471,
+              "selected_short_horizon_decisions": 9,
+              "target_reported_decisions": 471,
+              "target_comparable_decisions": 470,
+              "target_switch_decisions": 9
+            }
+          }
+        },
+        {
+          "seed": "drift-dev-v1-7",
+          "policy": "expert",
+          "distance": 257849.8,
+          "ticks": 3600,
+          "crashed": false,
+          "final_speed": 115.9,
+          "requests": 467,
+          "mean_decision_ms": 7.684,
+          "max_decision_ms": 19.546,
+          "p95_decision_ms": 8.339,
+          "p99_decision_ms": 11.77,
+          "diagnostics": {
+            "attribution": "diagnostic_only_not_avoidability_or_same_traffic_counterfactual",
+            "initial_speed": 10.0,
+            "max_ticks": 3600,
+            "executed_ticks": 3600,
+            "remaining_ticks": 0,
+            "ceiling": 684180.0,
+            "actual_distance": 257849.80000000013,
+            "distance_loss": 426330.19999999984,
+            "action_opportunity_loss": 426330.20000000205,
+            "termination_loss": 0.0,
+            "identity_residual": -2.2118911147117615e-09,
+            "action_counts": {
+              "ACCELERATE": 1371,
+              "NOTHING": 1464,
+              "DECELERATE": 312,
+              "STEER_RIGHT": 230,
+              "STEER_LEFT": 223
+            },
+            "loss_by_action": {
+              "ACCELERATE": 2.05614431036949e-09,
+              "NOTHING": 205170.8,
+              "DECELERATE": 112866.40000000004,
+              "STEER_RIGHT": 54375.399999999994,
+              "STEER_LEFT": 53917.6
+            },
+            "phases": {
+              "early": {
+                "action_counts": {
+                  "ACCELERATE": 520,
+                  "NOTHING": 266,
+                  "DECELERATE": 136,
+                  "STEER_RIGHT": 135,
+                  "STEER_LEFT": 143
+                },
+                "loss_by_action": {
+                  "ACCELERATE": -1.9120788286031143e-09,
+                  "NOTHING": 74287.1,
+                  "DECELERATE": 78519.20000000056,
+                  "STEER_RIGHT": 41404.399999999994,
+                  "STEER_LEFT": 43146.9
+                }
+              },
+              "middle": {
+                "action_counts": {
+                  "NOTHING": 470,
+                  "STEER_RIGHT": 58,
+                  "ACCELERATE": 582,
+                  "STEER_LEFT": 50,
+                  "DECELERATE": 40
+                },
+                "loss_by_action": {
+                  "NOTHING": 94191.3,
+                  "STEER_RIGHT": 11399.900000000001,
+                  "ACCELERATE": 2.684554828435992e-09,
+                  "STEER_LEFT": 9207.099999999999,
+                  "DECELERATE": 15002.400000000105
+                }
+              },
+              "late": {
+                "action_counts": {
+                  "ACCELERATE": 269,
+                  "NOTHING": 728,
+                  "DECELERATE": 136,
+                  "STEER_RIGHT": 37,
+                  "STEER_LEFT": 30
+                },
+                "loss_by_action": {
+                  "ACCELERATE": 1.283668310536612e-09,
+                  "NOTHING": 36692.40000000001,
+                  "DECELERATE": 19344.799999999457,
+                  "STEER_RIGHT": 1571.1000000000001,
+                  "STEER_LEFT": 1563.6
+                }
+              }
+            },
+            "decision_counts": {
+              "decisions": 467,
+              "decisions_with_plan": 467,
+              "recovery_checks_reported_decisions": 467,
+              "recovery_checks_sum": 487,
+              "recovery_checks_positive_decisions": 467,
+              "recovery_vetoes_reported_decisions": 467,
+              "recovery_vetoes_sum": 25,
+              "recovery_vetoes_positive_decisions": 5,
+              "recovery_safe_reported_decisions": 467,
+              "recovery_safe_decisions": 462,
+              "recovery_unsafe_decisions": 5,
+              "safe_ticks_reported_decisions": 467,
+              "selected_zero_safe_ticks_decisions": 0,
+              "horizon_reported_decisions": 467,
+              "safe_horizon_comparable_decisions": 467,
+              "selected_short_horizon_decisions": 5,
+              "target_reported_decisions": 467,
+              "target_comparable_decisions": 466,
+              "target_switch_decisions": 4
+            }
+          }
+        },
+        {
+          "seed": "drift-dev-v1-8",
+          "policy": "expert",
+          "distance": 279496.6,
+          "ticks": 3600,
+          "crashed": false,
+          "final_speed": 122.4,
+          "requests": 468,
+          "mean_decision_ms": 7.92,
+          "max_decision_ms": 25.429,
+          "p95_decision_ms": 8.809,
+          "p99_decision_ms": 19.476,
+          "diagnostics": {
+            "attribution": "diagnostic_only_not_avoidability_or_same_traffic_counterfactual",
+            "initial_speed": 10.0,
+            "max_ticks": 3600,
+            "executed_ticks": 3600,
+            "remaining_ticks": 0,
+            "ceiling": 684180.0,
+            "actual_distance": 279496.60000000015,
+            "distance_loss": 404683.39999999985,
+            "action_opportunity_loss": 404683.4000000025,
+            "termination_loss": 0.0,
+            "identity_residual": -2.6775524020195007e-09,
+            "action_counts": {
+              "ACCELERATE": 1604,
+              "NOTHING": 1008,
+              "DECELERATE": 480,
+              "STEER_LEFT": 254,
+              "STEER_RIGHT": 254
+            },
+            "loss_by_action": {
+              "ACCELERATE": 4.30638730231081e-09,
+              "NOTHING": 171458.39999999997,
+              "DECELERATE": 143543.19999999827,
+              "STEER_LEFT": 45064.1,
+              "STEER_RIGHT": 44617.69999999999
+            },
+            "phases": {
+              "early": {
+                "action_counts": {
+                  "ACCELERATE": 684,
+                  "NOTHING": 168,
+                  "DECELERATE": 110,
+                  "STEER_LEFT": 119,
+                  "STEER_RIGHT": 119
+                },
+                "loss_by_action": {
+                  "ACCELERATE": -1.929485071716641e-09,
+                  "NOTHING": 52768.4,
+                  "DECELERATE": 63511.40000000047,
+                  "STEER_LEFT": 35044.99999999999,
+                  "STEER_RIGHT": 34818.299999999996
+                }
+              },
+              "middle": {
+                "action_counts": {
+                  "ACCELERATE": 436,
+                  "NOTHING": 538,
+                  "DECELERATE": 136,
+                  "STEER_RIGHT": 45,
+                  "STEER_LEFT": 45
+                },
+                "loss_by_action": {
+                  "ACCELERATE": 4.687754906473884e-09,
+                  "NOTHING": 95095.9,
+                  "DECELERATE": 52775.199999998535,
+                  "STEER_RIGHT": 6208.6,
+                  "STEER_LEFT": 5980.5
+                }
+              },
+              "late": {
+                "action_counts": {
+                  "NOTHING": 302,
+                  "ACCELERATE": 484,
+                  "DECELERATE": 234,
+                  "STEER_LEFT": 90,
+                  "STEER_RIGHT": 90
+                },
+                "loss_by_action": {
+                  "NOTHING": 23594.1,
+                  "ACCELERATE": 1.548117467553567e-09,
+                  "DECELERATE": 27256.59999999923,
+                  "STEER_LEFT": 4038.6000000000004,
+                  "STEER_RIGHT": 3590.8
+                }
+              }
+            },
+            "decision_counts": {
+              "decisions": 468,
+              "decisions_with_plan": 468,
+              "recovery_checks_reported_decisions": 468,
+              "recovery_checks_sum": 505,
+              "recovery_checks_positive_decisions": 468,
+              "recovery_vetoes_reported_decisions": 468,
+              "recovery_vetoes_sum": 46,
+              "recovery_vetoes_positive_decisions": 9,
+              "recovery_safe_reported_decisions": 468,
+              "recovery_safe_decisions": 459,
+              "recovery_unsafe_decisions": 9,
+              "safe_ticks_reported_decisions": 468,
+              "selected_zero_safe_ticks_decisions": 0,
+              "horizon_reported_decisions": 468,
+              "safe_horizon_comparable_decisions": 468,
+              "selected_short_horizon_decisions": 9,
+              "target_reported_decisions": 468,
+              "target_comparable_decisions": 467,
+              "target_switch_decisions": 10
+            }
+          }
+        },
+        {
+          "seed": "drift-dev-v1-9",
+          "policy": "expert",
+          "distance": 175270.7,
+          "ticks": 3600,
+          "crashed": false,
+          "final_speed": 99.2,
+          "requests": 462,
+          "mean_decision_ms": 7.611,
+          "max_decision_ms": 21.587,
+          "p95_decision_ms": 8.255,
+          "p99_decision_ms": 8.585,
+          "diagnostics": {
+            "attribution": "diagnostic_only_not_avoidability_or_same_traffic_counterfactual",
+            "initial_speed": 10.0,
+            "max_ticks": 3600,
+            "executed_ticks": 3600,
+            "remaining_ticks": 0,
+            "ceiling": 684180.0,
+            "actual_distance": 175270.69999999832,
+            "distance_loss": 508909.3000000017,
+            "action_opportunity_loss": 508909.2999999991,
+            "termination_loss": 0.0,
+            "identity_residual": 2.561137080192566e-09,
+            "action_counts": {
+              "ACCELERATE": 1331,
+              "NOTHING": 1386,
+              "DECELERATE": 439,
+              "STEER_LEFT": 222,
+              "STEER_RIGHT": 222
+            },
+            "loss_by_action": {
+              "ACCELERATE": -2.742405746936072e-10,
+              "NOTHING": 240152.09999999983,
+              "DECELERATE": 185476.5999999996,
+              "STEER_LEFT": 41862.79999999999,
+              "STEER_RIGHT": 41417.799999999996
+            },
+            "phases": {
+              "early": {
+                "action_counts": {
+                  "ACCELERATE": 400,
+                  "NOTHING": 326,
+                  "DECELERATE": 232,
+                  "STEER_LEFT": 121,
+                  "STEER_RIGHT": 121
+                },
+                "loss_by_action": {
+                  "ACCELERATE": -7.493590192808597e-10,
+                  "NOTHING": 98515.7,
+                  "DECELERATE": 141319.20000000036,
+                  "STEER_LEFT": 35600.8,
+                  "STEER_RIGHT": 35604.69999999999
+                }
+              },
+              "middle": {
+                "action_counts": {
+                  "NOTHING": 592,
+                  "ACCELERATE": 472,
+                  "DECELERATE": 120,
+                  "STEER_LEFT": 8,
+                  "STEER_RIGHT": 8
+                },
+                "loss_by_action": {
+                  "NOTHING": 101469.6,
+                  "ACCELERATE": -4.5187553698866623e-10,
+                  "DECELERATE": 39035.999999999476,
+                  "STEER_LEFT": 1358.8000000000002,
+                  "STEER_RIGHT": 1352.4
+                }
+              },
+              "late": {
+                "action_counts": {
+                  "NOTHING": 468,
+                  "DECELERATE": 87,
+                  "ACCELERATE": 459,
+                  "STEER_LEFT": 93,
+                  "STEER_RIGHT": 93
+                },
+                "loss_by_action": {
+                  "NOTHING": 40166.8,
+                  "DECELERATE": 5121.399999999983,
+                  "ACCELERATE": 9.269939815759187e-10,
+                  "STEER_LEFT": 4903.2,
+                  "STEER_RIGHT": 4460.7
+                }
+              }
+            },
+            "decision_counts": {
+              "decisions": 462,
+              "decisions_with_plan": 462,
+              "recovery_checks_reported_decisions": 462,
+              "recovery_checks_sum": 481,
+              "recovery_checks_positive_decisions": 462,
+              "recovery_vetoes_reported_decisions": 462,
+              "recovery_vetoes_sum": 23,
+              "recovery_vetoes_positive_decisions": 5,
+              "recovery_safe_reported_decisions": 462,
+              "recovery_safe_decisions": 458,
+              "recovery_unsafe_decisions": 4,
+              "safe_ticks_reported_decisions": 462,
+              "selected_zero_safe_ticks_decisions": 0,
+              "horizon_reported_decisions": 462,
+              "safe_horizon_comparable_decisions": 462,
+              "selected_short_horizon_decisions": 4,
+              "target_reported_decisions": 462,
+              "target_comparable_decisions": 461,
+              "target_switch_decisions": 6
+            }
+          }
+        },
+        {
+          "seed": "drift-dev-v1-10",
+          "policy": "expert",
+          "distance": 172699.8,
+          "ticks": 3600,
+          "crashed": false,
+          "final_speed": 112.0,
+          "requests": 464,
+          "mean_decision_ms": 7.665,
+          "max_decision_ms": 24.869,
+          "p95_decision_ms": 8.432,
+          "p99_decision_ms": 10.949,
+          "diagnostics": {
+            "attribution": "diagnostic_only_not_avoidability_or_same_traffic_counterfactual",
+            "initial_speed": 10.0,
+            "max_ticks": 3600,
+            "executed_ticks": 3600,
+            "remaining_ticks": 0,
+            "ceiling": 684180.0,
+            "actual_distance": 172699.79999999912,
+            "distance_loss": 511480.2000000009,
+            "action_opportunity_loss": 511480.19999999955,
+            "termination_loss": 0.0,
+            "identity_residual": 1.3387762010097504e-09,
+            "action_counts": {
+              "ACCELERATE": 1388,
+              "NOTHING": 1520,
+              "DECELERATE": 368,
+              "STEER_LEFT": 162,
+              "STEER_RIGHT": 162
+            },
+            "loss_by_action": {
+              "ACCELERATE": -1.5219461801940781e-09,
+              "NOTHING": 308520.8000000001,
+              "DECELERATE": 152742.40000000098,
+              "STEER_LEFT": 25219.100000000002,
+              "STEER_RIGHT": 24997.899999999998
+            },
+            "phases": {
+              "early": {
+                "action_counts": {
+                  "ACCELERATE": 336,
+                  "NOTHING": 736,
+                  "DECELERATE": 128
+                },
+                "loss_by_action": {
+                  "ACCELERATE": -1.2068992472080708e-09,
+                  "NOTHING": 208388.80000000005,
+                  "DECELERATE": 79052.80000000057
+                }
+              },
+              "middle": {
+                "action_counts": {
+                  "ACCELERATE": 320,
+                  "STEER_LEFT": 103,
+                  "STEER_RIGHT": 110,
+                  "NOTHING": 483,
+                  "DECELERATE": 184
+                },
+                "loss_by_action": {
+                  "ACCELERATE": -8.910958637642352e-10,
+                  "STEER_LEFT": 20438.100000000002,
+                  "STEER_RIGHT": 20827.299999999996,
+                  "NOTHING": 79454.2,
+                  "DECELERATE": 64778.40000000048
+                }
+              },
+              "late": {
+                "action_counts": {
+                  "NOTHING": 301,
+                  "ACCELERATE": 732,
+                  "STEER_LEFT": 59,
+                  "STEER_RIGHT": 52,
+                  "DECELERATE": 56
+                },
+                "loss_by_action": {
+                  "NOTHING": 20677.799999999996,
+                  "ACCELERATE": 5.760489307782279e-10,
+                  "STEER_LEFT": 4781.0,
+                  "STEER_RIGHT": 4170.600000000001,
+                  "DECELERATE": 8911.20000000004
+                }
+              }
+            },
+            "decision_counts": {
+              "decisions": 464,
+              "decisions_with_plan": 464,
+              "recovery_checks_reported_decisions": 464,
+              "recovery_checks_sum": 478,
+              "recovery_checks_positive_decisions": 464,
+              "recovery_vetoes_reported_decisions": 464,
+              "recovery_vetoes_sum": 17,
+              "recovery_vetoes_positive_decisions": 3,
+              "recovery_safe_reported_decisions": 464,
+              "recovery_safe_decisions": 461,
+              "recovery_unsafe_decisions": 3,
+              "safe_ticks_reported_decisions": 464,
+              "selected_zero_safe_ticks_decisions": 0,
+              "horizon_reported_decisions": 464,
+              "safe_horizon_comparable_decisions": 464,
+              "selected_short_horizon_decisions": 3,
+              "target_reported_decisions": 464,
+              "target_comparable_decisions": 463,
+              "target_switch_decisions": 12
+            }
+          }
+        },
+        {
+          "seed": "drift-dev-v1-11",
+          "policy": "expert",
+          "distance": 265070.0,
+          "ticks": 3600,
+          "crashed": false,
+          "final_speed": 158.0,
+          "requests": 476,
+          "mean_decision_ms": 7.865,
+          "max_decision_ms": 27.218,
+          "p95_decision_ms": 8.48,
+          "p99_decision_ms": 18.922,
+          "diagnostics": {
+            "attribution": "diagnostic_only_not_avoidability_or_same_traffic_counterfactual",
+            "initial_speed": 10.0,
+            "max_ticks": 3600,
+            "executed_ticks": 3600,
+            "remaining_ticks": 0,
+            "ceiling": 684180.0,
+            "actual_distance": 265069.9999999958,
+            "distance_loss": 419110.0000000042,
+            "action_opportunity_loss": 419110.0000000033,
+            "termination_loss": 0.0,
+            "identity_residual": 8.731149137020111e-10,
+            "action_counts": {
+              "ACCELERATE": 1848,
+              "DECELERATE": 368,
+              "NOTHING": 672,
+              "STEER_RIGHT": 356,
+              "STEER_LEFT": 356
+            },
+            "loss_by_action": {
+              "ACCELERATE": 3.750894816967332e-09,
+              "DECELERATE": 161307.19999999955,
+              "NOTHING": 123656.0,
+              "STEER_RIGHT": 67216.70000000001,
+              "STEER_LEFT": 66930.10000000002
+            },
+            "phases": {
+              "early": {
+                "action_counts": {
+                  "ACCELERATE": 492,
+                  "DECELERATE": 208,
+                  "NOTHING": 272,
+                  "STEER_RIGHT": 102,
+                  "STEER_LEFT": 126
+                },
+                "loss_by_action": {
+                  "ACCELERATE": -1.1914318975847493e-09,
+                  "DECELERATE": 127278.4000000003,
+                  "NOTHING": 81824.79999999999,
+                  "STEER_RIGHT": 30321.500000000004,
+                  "STEER_LEFT": 35734.700000000004
+                }
+              },
+              "middle": {
+                "action_counts": {
+                  "ACCELERATE": 708,
+                  "NOTHING": 170,
+                  "STEER_LEFT": 125,
+                  "STEER_RIGHT": 149,
+                  "DECELERATE": 48
+                },
+                "loss_by_action": {
+                  "ACCELERATE": 3.014295091308128e-09,
+                  "NOTHING": 26413.5,
+                  "STEER_LEFT": 24735.0,
+                  "STEER_RIGHT": 30372.100000000002,
+                  "DECELERATE": 14481.599999999822
+                }
+              },
+              "late": {
+                "action_counts": {
+                  "NOTHING": 230,
+                  "DECELERATE": 112,
+                  "STEER_RIGHT": 105,
+                  "ACCELERATE": 648,
+                  "STEER_LEFT": 105
+                },
+                "loss_by_action": {
+                  "NOTHING": 15417.7,
+                  "DECELERATE": 19547.199999999455,
+                  "STEER_RIGHT": 6523.1,
+                  "ACCELERATE": 1.928031623243953e-09,
+                  "STEER_LEFT": 6460.400000000001
+                }
+              }
+            },
+            "decision_counts": {
+              "decisions": 476,
+              "decisions_with_plan": 476,
+              "recovery_checks_reported_decisions": 476,
+              "recovery_checks_sum": 507,
+              "recovery_checks_positive_decisions": 476,
+              "recovery_vetoes_reported_decisions": 476,
+              "recovery_vetoes_sum": 38,
+              "recovery_vetoes_positive_decisions": 7,
+              "recovery_safe_reported_decisions": 476,
+              "recovery_safe_decisions": 469,
+              "recovery_unsafe_decisions": 7,
+              "safe_ticks_reported_decisions": 476,
+              "selected_zero_safe_ticks_decisions": 0,
+              "horizon_reported_decisions": 476,
+              "safe_horizon_comparable_decisions": 476,
+              "selected_short_horizon_decisions": 7,
+              "target_reported_decisions": 476,
+              "target_comparable_decisions": 475,
+              "target_switch_decisions": 19
+            }
+          }
+        }
+      ]
+    },
+    {
+      "label": "drift-speed-1.0",
+      "config": {
+        "horizon": 195,
+        "batch_size": 8,
+        "margin": 6.611122416525868,
+        "uncertainty": 0.07880208294199434,
+        "terminal_speed_weight": 74.66589072102381,
+        "blind_history": 140,
+        "blind_speed_buffer": 1.40146303237539,
+        "stale_velocity_uncertainty": 0.17042267780934428,
+        "lane_change_penalty": 0.49547352667356165,
+        "planner": "drift",
+        "maneuver_delay": 12,
+        "recovery_ticks": 120,
+        "adaptive_batch": true,
+        "drift_speed": 1.0
+      },
+      "summary": {
+        "games": 12,
+        "survived": 8,
+        "mean_distance": 200466.633,
+        "median_distance": 232517.15,
+        "min_distance": 1972.9,
+        "max_distance": 371722.9,
+        "mean_decision_ms": 38.071,
+        "p10_distance": 11578.470000000001,
+        "success_500k_count": 0,
+        "success_500k_rate": 0.0,
+        "survival_rate": 0.6666666666666666,
+        "robust_utility": 72306.2224,
+        "survival_95ci": [
+          0.39062208887279953,
+          0.8618799089087867
+        ]
+      },
+      "results": [
+        {
+          "seed": "drift-dev-v1-0",
+          "policy": "expert",
+          "distance": 268737.3,
+          "ticks": 3600,
+          "crashed": false,
+          "final_speed": 162.2,
+          "requests": 485,
+          "mean_decision_ms": 26.002,
+          "max_decision_ms": 140.938,
+          "p95_decision_ms": 40.243,
+          "p99_decision_ms": 76.717,
+          "diagnostics": {
+            "attribution": "diagnostic_only_not_avoidability_or_same_traffic_counterfactual",
+            "initial_speed": 10.0,
+            "max_ticks": 3600,
+            "executed_ticks": 3600,
+            "remaining_ticks": 0,
+            "ceiling": 684180.0,
+            "actual_distance": 268737.299999994,
+            "distance_loss": 415442.700000006,
+            "action_opportunity_loss": 415442.7000000046,
+            "termination_loss": 0.0,
+            "identity_residual": 1.3969838619232178e-09,
+            "action_counts": {
+              "ACCELERATE": 1912,
+              "STEER_LEFT": 541,
+              "STEER_RIGHT": 541,
+              "DECELERATE": 390,
+              "NOTHING": 216
+            },
+            "loss_by_action": {
+              "ACCELERATE": 4.978033429914319e-09,
+              "STEER_LEFT": 114019.79999999997,
+              "STEER_RIGHT": 113997.90000000001,
+              "DECELERATE": 150799.79999999964,
+              "NOTHING": 36625.20000000001
+            },
+            "phases": {
+              "early": {
+                "action_counts": {
+                  "ACCELERATE": 458,
+                  "STEER_LEFT": 274,
+                  "STEER_RIGHT": 278,
+                  "DECELERATE": 150,
+                  "NOTHING": 40
+                },
+                "loss_by_action": {
+                  "ACCELERATE": -8.069650225817071e-10,
+                  "STEER_LEFT": 81989.99999999999,
+                  "STEER_RIGHT": 83180.8,
+                  "DECELERATE": 100499.00000000001,
+                  "NOTHING": 12880.400000000001
+                }
+              },
+              "middle": {
+                "action_counts": {
+                  "STEER_LEFT": 126,
+                  "STEER_RIGHT": 98,
+                  "ACCELERATE": 736,
+                  "NOTHING": 120,
+                  "DECELERATE": 120
+                },
+                "loss_by_action": {
+                  "STEER_LEFT": 22703.699999999993,
+                  "STEER_RIGHT": 18529.9,
+                  "ACCELERATE": 3.347977450829376e-09,
+                  "NOTHING": 20457.2,
+                  "DECELERATE": 41643.99999999957
+                }
+              },
+              "late": {
+                "action_counts": {
+                  "STEER_LEFT": 141,
+                  "ACCELERATE": 718,
+                  "STEER_RIGHT": 165,
+                  "NOTHING": 56,
+                  "DECELERATE": 120
+                },
+                "loss_by_action": {
+                  "STEER_LEFT": 9326.1,
+                  "ACCELERATE": 2.4370210016666505e-09,
+                  "STEER_RIGHT": 12287.199999999997,
+                  "NOTHING": 3287.6,
+                  "DECELERATE": 8656.799999999752
+                }
+              }
+            },
+            "decision_counts": {
+              "decisions": 485,
+              "decisions_with_plan": 485,
+              "recovery_checks_reported_decisions": 485,
+              "recovery_checks_sum": 535,
+              "recovery_checks_positive_decisions": 485,
+              "recovery_vetoes_reported_decisions": 485,
+              "recovery_vetoes_sum": 57,
+              "recovery_vetoes_positive_decisions": 7,
+              "recovery_safe_reported_decisions": 485,
+              "recovery_safe_decisions": 478,
+              "recovery_unsafe_decisions": 7,
+              "safe_ticks_reported_decisions": 485,
+              "selected_zero_safe_ticks_decisions": 0,
+              "horizon_reported_decisions": 485,
+              "safe_horizon_comparable_decisions": 485,
+              "selected_short_horizon_decisions": 7,
+              "target_reported_decisions": 485,
+              "target_comparable_decisions": 484,
+              "target_switch_decisions": 98
+            }
+          }
+        },
+        {
+          "seed": "drift-dev-v1-1",
+          "policy": "expert",
+          "distance": 160771.4,
+          "ticks": 3600,
+          "crashed": false,
+          "final_speed": 108.2,
+          "requests": 481,
+          "mean_decision_ms": 29.866,
+          "max_decision_ms": 230.5,
+          "p95_decision_ms": 59.891,
+          "p99_decision_ms": 97.826,
+          "diagnostics": {
+            "attribution": "diagnostic_only_not_avoidability_or_same_traffic_counterfactual",
+            "initial_speed": 10.0,
+            "max_ticks": 3600,
+            "executed_ticks": 3600,
+            "remaining_ticks": 0,
+            "ceiling": 684180.0,
+            "actual_distance": 160771.4000000001,
+            "distance_loss": 523408.59999999986,
+            "action_opportunity_loss": 523408.5999999997,
+            "termination_loss": 0.0,
+            "identity_residual": 1.7462298274040222e-10,
+            "action_counts": {
+              "ACCELERATE": 1414,
+              "STEER_LEFT": 327,
+              "DECELERATE": 432,
+              "STEER_RIGHT": 335,
+              "NOTHING": 1092
+            },
+            "loss_by_action": {
+              "ACCELERATE": -8.116739502739279e-10,
+              "STEER_LEFT": 60922.3,
+              "DECELERATE": 194654.80000000048,
+              "STEER_RIGHT": 60489.700000000004,
+              "NOTHING": 207341.8
+            },
+            "phases": {
+              "early": {
+                "action_counts": {
+                  "ACCELERATE": 569,
+                  "STEER_LEFT": 151,
+                  "DECELERATE": 170,
+                  "STEER_RIGHT": 144,
+                  "NOTHING": 166
+                },
+                "loss_by_action": {
+                  "ACCELERATE": -1.2349044842263623e-09,
+                  "STEER_LEFT": 44559.1,
+                  "DECELERATE": 112017.40000000004,
+                  "STEER_RIGHT": 42415.200000000004,
+                  "NOTHING": 52348.1
+                }
+              },
+              "middle": {
+                "action_counts": {
+                  "STEER_RIGHT": 70,
+                  "DECELERATE": 150,
+                  "STEER_LEFT": 42,
+                  "NOTHING": 854,
+                  "ACCELERATE": 84
+                },
+                "loss_by_action": {
+                  "STEER_RIGHT": 12040.1,
+                  "DECELERATE": 65170.20000000044,
+                  "STEER_LEFT": 7597.7,
+                  "NOTHING": 151275.7,
+                  "ACCELERATE": -1.7781093264446213e-10
+                }
+              },
+              "late": {
+                "action_counts": {
+                  "STEER_LEFT": 134,
+                  "ACCELERATE": 761,
+                  "DECELERATE": 112,
+                  "STEER_RIGHT": 121,
+                  "NOTHING": 72
+                },
+                "loss_by_action": {
+                  "STEER_LEFT": 8765.5,
+                  "ACCELERATE": 6.010414665968966e-10,
+                  "DECELERATE": 17467.19999999994,
+                  "STEER_RIGHT": 6034.400000000001,
+                  "NOTHING": 3718.0
+                }
+              }
+            },
+            "decision_counts": {
+              "decisions": 481,
+              "decisions_with_plan": 481,
+              "recovery_checks_reported_decisions": 481,
+              "recovery_checks_sum": 584,
+              "recovery_checks_positive_decisions": 481,
+              "recovery_vetoes_reported_decisions": 481,
+              "recovery_vetoes_sum": 119,
+              "recovery_vetoes_positive_decisions": 17,
+              "recovery_safe_reported_decisions": 481,
+              "recovery_safe_decisions": 465,
+              "recovery_unsafe_decisions": 16,
+              "safe_ticks_reported_decisions": 481,
+              "selected_zero_safe_ticks_decisions": 0,
+              "horizon_reported_decisions": 481,
+              "safe_horizon_comparable_decisions": 481,
+              "selected_short_horizon_decisions": 16,
+              "target_reported_decisions": 481,
+              "target_comparable_decisions": 480,
+              "target_switch_decisions": 90
+            }
+          }
+        },
+        {
+          "seed": "drift-dev-v1-2",
+          "policy": "expert",
+          "distance": 1972.9,
+          "ticks": 145,
+          "crashed": true,
+          "final_speed": 11.1,
+          "requests": 28,
+          "mean_decision_ms": 60.474,
+          "max_decision_ms": 180.05,
+          "p95_decision_ms": 155.997,
+          "p99_decision_ms": 175.981,
+          "diagnostics": {
+            "attribution": "diagnostic_only_not_avoidability_or_same_traffic_counterfactual",
+            "initial_speed": 10.0,
+            "max_ticks": 3600,
+            "executed_ticks": 145,
+            "remaining_ticks": 3455,
+            "ceiling": 684180.0,
+            "actual_distance": 1972.8999999999992,
+            "distance_loss": 682207.1,
+            "action_opportunity_loss": 46832.6,
+            "termination_loss": 635374.5,
+            "identity_residual": 0.0,
+            "action_counts": {
+              "ACCELERATE": 78,
+              "DECELERATE": 67
+            },
+            "loss_by_action": {
+              "ACCELERATE": 2.4748675331309755e-11,
+              "DECELERATE": 46832.59999999998
+            },
+            "phases": {
+              "early": {
+                "action_counts": {
+                  "ACCELERATE": 78,
+                  "DECELERATE": 67
+                },
+                "loss_by_action": {
+                  "ACCELERATE": 2.4748675331309755e-11,
+                  "DECELERATE": 46832.59999999998
+                }
+              },
+              "middle": {
+                "action_counts": {},
+                "loss_by_action": {}
+              },
+              "late": {
+                "action_counts": {},
+                "loss_by_action": {}
+              }
+            },
+            "decision_counts": {
+              "decisions": 28,
+              "decisions_with_plan": 28,
+              "recovery_checks_reported_decisions": 28,
+              "recovery_checks_sum": 128,
+              "recovery_checks_positive_decisions": 28,
+              "recovery_vetoes_reported_decisions": 28,
+              "recovery_vetoes_sum": 119,
+              "recovery_vetoes_positive_decisions": 19,
+              "recovery_safe_reported_decisions": 28,
+              "recovery_safe_decisions": 9,
+              "recovery_unsafe_decisions": 19,
+              "safe_ticks_reported_decisions": 28,
+              "selected_zero_safe_ticks_decisions": 2,
+              "horizon_reported_decisions": 28,
+              "safe_horizon_comparable_decisions": 28,
+              "selected_short_horizon_decisions": 19,
+              "target_reported_decisions": 28,
+              "target_comparable_decisions": 27,
+              "target_switch_decisions": 0
+            }
+          }
+        },
+        {
+          "seed": "drift-dev-v1-3",
+          "policy": "expert",
+          "distance": 186019.1,
+          "ticks": 3600,
+          "crashed": false,
+          "final_speed": 105.2,
+          "requests": 482,
+          "mean_decision_ms": 31.932,
+          "max_decision_ms": 160.696,
+          "p95_decision_ms": 74.293,
+          "p99_decision_ms": 103.896,
+          "diagnostics": {
+            "attribution": "diagnostic_only_not_avoidability_or_same_traffic_counterfactual",
+            "initial_speed": 10.0,
+            "max_ticks": 3600,
+            "executed_ticks": 3600,
+            "remaining_ticks": 0,
+            "ceiling": 684180.0,
+            "actual_distance": 186019.09999999864,
+            "distance_loss": 498160.90000000136,
+            "action_opportunity_loss": 498160.90000000084,
+            "termination_loss": 0.0,
+            "identity_residual": 5.238689482212067e-10,
+            "action_counts": {
+              "ACCELERATE": 1371,
+              "STEER_LEFT": 361,
+              "DECELERATE": 419,
+              "STEER_RIGHT": 361,
+              "NOTHING": 1088
+            },
+            "loss_by_action": {
+              "ACCELERATE": 1.8432454451655644e-09,
+              "STEER_LEFT": 60296.99999999999,
+              "DECELERATE": 159208.99999999898,
+              "STEER_RIGHT": 59875.69999999999,
+              "NOTHING": 218779.2
+            },
+            "phases": {
+              "early": {
+                "action_counts": {
+                  "ACCELERATE": 253,
+                  "STEER_LEFT": 64,
+                  "DECELERATE": 139,
+                  "STEER_RIGHT": 64,
+                  "NOTHING": 680
+                },
+                "loss_by_action": {
+                  "ACCELERATE": 8.011508123573208e-12,
+                  "STEER_LEFT": 18417.600000000002,
+                  "DECELERATE": 94422.59999999992,
+                  "STEER_RIGHT": 18171.399999999998,
+                  "NOTHING": 203745.20000000004
+                }
+              },
+              "middle": {
+                "action_counts": {
+                  "ACCELERATE": 688,
+                  "STEER_RIGHT": 179,
+                  "DECELERATE": 138,
+                  "STEER_LEFT": 179,
+                  "NOTHING": 16
+                },
+                "loss_by_action": {
+                  "ACCELERATE": 8.130734974187703e-11,
+                  "STEER_RIGHT": 31560.999999999996,
+                  "DECELERATE": 48644.59999999969,
+                  "STEER_LEFT": 31516.100000000002,
+                  "NOTHING": 2376.8
+                }
+              },
+              "late": {
+                "action_counts": {
+                  "DECELERATE": 142,
+                  "STEER_LEFT": 118,
+                  "ACCELERATE": 430,
+                  "STEER_RIGHT": 118,
+                  "NOTHING": 392
+                },
+                "loss_by_action": {
+                  "DECELERATE": 16141.799999999543,
+                  "STEER_LEFT": 10363.3,
+                  "ACCELERATE": 1.7539265873001142e-09,
+                  "STEER_RIGHT": 10143.300000000001,
+                  "NOTHING": 12657.199999999997
+                }
+              }
+            },
+            "decision_counts": {
+              "decisions": 482,
+              "decisions_with_plan": 482,
+              "recovery_checks_reported_decisions": 482,
+              "recovery_checks_sum": 600,
+              "recovery_checks_positive_decisions": 482,
+              "recovery_vetoes_reported_decisions": 482,
+              "recovery_vetoes_sum": 137,
+              "recovery_vetoes_positive_decisions": 19,
+              "recovery_safe_reported_decisions": 482,
+              "recovery_safe_decisions": 463,
+              "recovery_unsafe_decisions": 19,
+              "safe_ticks_reported_decisions": 482,
+              "selected_zero_safe_ticks_decisions": 0,
+              "horizon_reported_decisions": 482,
+              "safe_horizon_comparable_decisions": 482,
+              "selected_short_horizon_decisions": 19,
+              "target_reported_decisions": 482,
+              "target_comparable_decisions": 481,
+              "target_switch_decisions": 68
+            }
+          }
+        },
+        {
+          "seed": "drift-dev-v1-4",
+          "policy": "expert",
+          "distance": 202425.2,
+          "ticks": 3600,
+          "crashed": false,
+          "final_speed": 90.6,
+          "requests": 484,
+          "mean_decision_ms": 31.858,
+          "max_decision_ms": 196.799,
+          "p95_decision_ms": 52.208,
+          "p99_decision_ms": 95.147,
+          "diagnostics": {
+            "attribution": "diagnostic_only_not_avoidability_or_same_traffic_counterfactual",
+            "initial_speed": 10.0,
+            "max_ticks": 3600,
+            "executed_ticks": 3600,
+            "remaining_ticks": 0,
+            "ceiling": 684180.0,
+            "actual_distance": 202425.1999999973,
+            "distance_loss": 481754.8000000027,
+            "action_opportunity_loss": 481754.8,
+            "termination_loss": 0.0,
+            "identity_residual": 2.735760062932968e-09,
+            "action_counts": {
+              "ACCELERATE": 1322,
+              "STEER_LEFT": 377,
+              "DECELERATE": 516,
+              "STEER_RIGHT": 377,
+              "NOTHING": 1008
+            },
+            "loss_by_action": {
+              "ACCELERATE": 9.294617853150555e-10,
+              "STEER_LEFT": 72500.0,
+              "DECELERATE": 196485.19999999905,
+              "STEER_RIGHT": 72276.8,
+              "NOTHING": 140492.80000000002
+            },
+            "phases": {
+              "early": {
+                "action_counts": {
+                  "ACCELERATE": 510,
+                  "STEER_LEFT": 117,
+                  "DECELERATE": 144,
+                  "STEER_RIGHT": 117,
+                  "NOTHING": 312
+                },
+                "loss_by_action": {
+                  "ACCELERATE": -1.0725331456296061e-09,
+                  "STEER_LEFT": 32764.7,
+                  "DECELERATE": 96528.8,
+                  "STEER_RIGHT": 32742.800000000003,
+                  "NOTHING": 98681.20000000001
+                }
+              },
+              "middle": {
+                "action_counts": {
+                  "ACCELERATE": 568,
+                  "STEER_LEFT": 195,
+                  "STEER_RIGHT": 183,
+                  "DECELERATE": 174,
+                  "NOTHING": 80
+                },
+                "loss_by_action": {
+                  "ACCELERATE": 1.122434201139555e-09,
+                  "STEER_LEFT": 33312.5,
+                  "STEER_RIGHT": 31910.0,
+                  "DECELERATE": 67348.20000000016,
+                  "NOTHING": 15560.8
+                }
+              },
+              "late": {
+                "action_counts": {
+                  "STEER_LEFT": 65,
+                  "DECELERATE": 198,
+                  "ACCELERATE": 244,
+                  "STEER_RIGHT": 77,
+                  "NOTHING": 616
+                },
+                "loss_by_action": {
+                  "STEER_LEFT": 6422.8,
+                  "DECELERATE": 32608.199999999077,
+                  "ACCELERATE": 8.795607298051067e-10,
+                  "STEER_RIGHT": 7624.0,
+                  "NOTHING": 26250.8
+                }
+              }
+            },
+            "decision_counts": {
+              "decisions": 484,
+              "decisions_with_plan": 484,
+              "recovery_checks_reported_decisions": 484,
+              "recovery_checks_sum": 568,
+              "recovery_checks_positive_decisions": 484,
+              "recovery_vetoes_reported_decisions": 484,
+              "recovery_vetoes_sum": 99,
+              "recovery_vetoes_positive_decisions": 15,
+              "recovery_safe_reported_decisions": 484,
+              "recovery_safe_decisions": 469,
+              "recovery_unsafe_decisions": 15,
+              "safe_ticks_reported_decisions": 484,
+              "selected_zero_safe_ticks_decisions": 0,
+              "horizon_reported_decisions": 484,
+              "safe_horizon_comparable_decisions": 484,
+              "selected_short_horizon_decisions": 15,
+              "target_reported_decisions": 484,
+              "target_comparable_decisions": 483,
+              "target_switch_decisions": 90
+            }
+          }
+        },
+        {
+          "seed": "drift-dev-v1-5",
+          "policy": "expert",
+          "distance": 9498.1,
+          "ticks": 632,
+          "crashed": true,
+          "final_speed": 28.4,
+          "requests": 95,
+          "mean_decision_ms": 49.549,
+          "max_decision_ms": 169.949,
+          "p95_decision_ms": 95.13,
+          "p99_decision_ms": 118.236,
+          "diagnostics": {
+            "attribution": "diagnostic_only_not_avoidability_or_same_traffic_counterfactual",
+            "initial_speed": 10.0,
+            "max_ticks": 3600,
+            "executed_ticks": 632,
+            "remaining_ticks": 2968,
+            "ceiling": 684180.0,
+            "actual_distance": 9498.09999999997,
+            "distance_loss": 674681.9,
+            "action_opportunity_loss": 149791.0999999995,
+            "termination_loss": 524890.8000000005,
+            "identity_residual": 0.0,
+            "action_counts": {
+              "ACCELERATE": 306,
+              "STEER_LEFT": 97,
+              "STEER_RIGHT": 83,
+              "DECELERATE": 122,
+              "NOTHING": 24
+            },
+            "loss_by_action": {
+              "ACCELERATE": -4.3683467954025446e-10,
+              "STEER_LEFT": 31440.399999999998,
+              "STEER_RIGHT": 27344.9,
+              "DECELERATE": 82970.99999999994,
+              "NOTHING": 8034.8
+            },
+            "phases": {
+              "early": {
+                "action_counts": {
+                  "ACCELERATE": 306,
+                  "STEER_LEFT": 97,
+                  "STEER_RIGHT": 83,
+                  "DECELERATE": 122,
+                  "NOTHING": 24
+                },
+                "loss_by_action": {
+                  "ACCELERATE": -4.3683467954025446e-10,
+                  "STEER_LEFT": 31440.399999999998,
+                  "STEER_RIGHT": 27344.9,
+                  "DECELERATE": 82970.99999999994,
+                  "NOTHING": 8034.8
+                }
+              },
+              "middle": {
+                "action_counts": {},
+                "loss_by_action": {}
+              },
+              "late": {
+                "action_counts": {},
+                "loss_by_action": {}
+              }
+            },
+            "decision_counts": {
+              "decisions": 95,
+              "decisions_with_plan": 95,
+              "recovery_checks_reported_decisions": 95,
+              "recovery_checks_sum": 159,
+              "recovery_checks_positive_decisions": 95,
+              "recovery_vetoes_reported_decisions": 95,
+              "recovery_vetoes_sum": 78,
+              "recovery_vetoes_positive_decisions": 14,
+              "recovery_safe_reported_decisions": 95,
+              "recovery_safe_decisions": 81,
+              "recovery_unsafe_decisions": 14,
+              "safe_ticks_reported_decisions": 95,
+              "selected_zero_safe_ticks_decisions": 1,
+              "horizon_reported_decisions": 95,
+              "safe_horizon_comparable_decisions": 95,
+              "selected_short_horizon_decisions": 14,
+              "target_reported_decisions": 95,
+              "target_comparable_decisions": 94,
+              "target_switch_decisions": 34
+            }
+          }
+        },
+        {
+          "seed": "drift-dev-v1-6",
+          "policy": "expert",
+          "distance": 340766.8,
+          "ticks": 3600,
+          "crashed": false,
+          "final_speed": 172.0,
+          "requests": 483,
+          "mean_decision_ms": 41.474,
+          "max_decision_ms": 294.732,
+          "p95_decision_ms": 50.438,
+          "p99_decision_ms": 207.288,
+          "diagnostics": {
+            "attribution": "diagnostic_only_not_avoidability_or_same_traffic_counterfactual",
+            "initial_speed": 10.0,
+            "max_ticks": 3600,
+            "executed_ticks": 3600,
+            "remaining_ticks": 0,
+            "ceiling": 684180.0,
+            "actual_distance": 340766.7999999972,
+            "distance_loss": 343413.2000000028,
+            "action_opportunity_loss": 343413.20000000653,
+            "termination_loss": 0.0,
+            "identity_residual": -3.725290298461914e-09,
+            "action_counts": {
+              "ACCELERATE": 2019,
+              "DECELERATE": 399,
+              "STEER_LEFT": 451,
+              "STEER_RIGHT": 451,
+              "NOTHING": 280
+            },
+            "loss_by_action": {
+              "ACCELERATE": 7.499852905379356e-09,
+              "DECELERATE": 144312.39999999903,
+              "STEER_LEFT": 76211.9,
+              "STEER_RIGHT": 76638.09999999999,
+              "NOTHING": 46250.8
+            },
+            "phases": {
+              "early": {
+                "action_counts": {
+                  "ACCELERATE": 685,
+                  "DECELERATE": 159,
+                  "STEER_LEFT": 154,
+                  "STEER_RIGHT": 194,
+                  "NOTHING": 8
+                },
+                "loss_by_action": {
+                  "ACCELERATE": -2.0754345464446544e-09,
+                  "DECELERATE": 101898.00000000019,
+                  "STEER_LEFT": 46132.8,
+                  "STEER_RIGHT": 56110.000000000015,
+                  "NOTHING": 2067.6
+                }
+              },
+              "middle": {
+                "action_counts": {
+                  "ACCELERATE": 662,
+                  "STEER_LEFT": 109,
+                  "STEER_RIGHT": 77,
+                  "NOTHING": 240,
+                  "DECELERATE": 112
+                },
+                "loss_by_action": {
+                  "ACCELERATE": 6.943911085022236e-09,
+                  "STEER_LEFT": 19455.3,
+                  "STEER_RIGHT": 10664.8,
+                  "NOTHING": 43405.60000000001,
+                  "DECELERATE": 33316.79999999906
+                }
+              },
+              "late": {
+                "action_counts": {
+                  "STEER_LEFT": 188,
+                  "STEER_RIGHT": 180,
+                  "ACCELERATE": 672,
+                  "DECELERATE": 128,
+                  "NOTHING": 32
+                },
+                "loss_by_action": {
+                  "STEER_LEFT": 10623.800000000001,
+                  "STEER_RIGHT": 9863.3,
+                  "ACCELERATE": 2.6313763668017742e-09,
+                  "DECELERATE": 9097.599999999742,
+                  "NOTHING": 777.6
+                }
+              }
+            },
+            "decision_counts": {
+              "decisions": 483,
+              "decisions_with_plan": 483,
+              "recovery_checks_reported_decisions": 483,
+              "recovery_checks_sum": 626,
+              "recovery_checks_positive_decisions": 483,
+              "recovery_vetoes_reported_decisions": 483,
+              "recovery_vetoes_sum": 166,
+              "recovery_vetoes_positive_decisions": 23,
+              "recovery_safe_reported_decisions": 483,
+              "recovery_safe_decisions": 460,
+              "recovery_unsafe_decisions": 23,
+              "safe_ticks_reported_decisions": 483,
+              "selected_zero_safe_ticks_decisions": 0,
+              "horizon_reported_decisions": 483,
+              "safe_horizon_comparable_decisions": 483,
+              "selected_short_horizon_decisions": 23,
+              "target_reported_decisions": 483,
+              "target_comparable_decisions": 482,
+              "target_switch_decisions": 81
+            }
+          }
+        },
+        {
+          "seed": "drift-dev-v1-7",
+          "policy": "expert",
+          "distance": 371722.9,
+          "ticks": 3600,
+          "crashed": false,
+          "final_speed": 197.1,
+          "requests": 480,
+          "mean_decision_ms": 41.155,
+          "max_decision_ms": 181.14,
+          "p95_decision_ms": 61.277,
+          "p99_decision_ms": 131.996,
+          "diagnostics": {
+            "attribution": "diagnostic_only_not_avoidability_or_same_traffic_counterfactual",
+            "initial_speed": 10.0,
+            "max_ticks": 3600,
+            "executed_ticks": 3600,
+            "remaining_ticks": 0,
+            "ceiling": 684180.0,
+            "actual_distance": 371722.89999999193,
+            "distance_loss": 312457.10000000807,
+            "action_opportunity_loss": 312457.10000000783,
+            "termination_loss": 0.0,
+            "identity_residual": 2.3283064365386963e-10,
+            "action_counts": {
+              "ACCELERATE": 2135,
+              "NOTHING": 341,
+              "DECELERATE": 264,
+              "STEER_RIGHT": 430,
+              "STEER_LEFT": 430
+            },
+            "loss_by_action": {
+              "ACCELERATE": 8.386872890620012e-09,
+              "NOTHING": 65818.59999999999,
+              "DECELERATE": 106519.19999999944,
+              "STEER_RIGHT": 69936.8,
+              "STEER_LEFT": 70182.5
+            },
+            "phases": {
+              "early": {
+                "action_counts": {
+                  "ACCELERATE": 720,
+                  "NOTHING": 72,
+                  "DECELERATE": 128,
+                  "STEER_RIGHT": 140,
+                  "STEER_LEFT": 140
+                },
+                "loss_by_action": {
+                  "ACCELERATE": -1.4727842279071979e-09,
+                  "NOTHING": 23510.8,
+                  "DECELERATE": 73507.20000000026,
+                  "STEER_RIGHT": 42161.8,
+                  "STEER_LEFT": 41934.99999999999
+                }
+              },
+              "middle": {
+                "action_counts": {
+                  "ACCELERATE": 679,
+                  "NOTHING": 208,
+                  "DECELERATE": 72,
+                  "STEER_RIGHT": 121,
+                  "STEER_LEFT": 120
+                },
+                "loss_by_action": {
+                  "ACCELERATE": 7.130909612795833e-09,
+                  "NOTHING": 41779.99999999999,
+                  "DECELERATE": 25383.19999999928,
+                  "STEER_RIGHT": 18203.2,
+                  "STEER_LEFT": 18059.3
+                }
+              },
+              "late": {
+                "action_counts": {
+                  "STEER_RIGHT": 169,
+                  "ACCELERATE": 736,
+                  "DECELERATE": 64,
+                  "STEER_LEFT": 170,
+                  "NOTHING": 61
+                },
+                "loss_by_action": {
+                  "STEER_RIGHT": 9571.8,
+                  "ACCELERATE": 2.728747505731377e-09,
+                  "DECELERATE": 7628.799999999783,
+                  "STEER_LEFT": 10188.2,
+                  "NOTHING": 527.8000000000001
+                }
+              }
+            },
+            "decision_counts": {
+              "decisions": 480,
+              "decisions_with_plan": 480,
+              "recovery_checks_reported_decisions": 480,
+              "recovery_checks_sum": 572,
+              "recovery_checks_positive_decisions": 480,
+              "recovery_vetoes_reported_decisions": 480,
+              "recovery_vetoes_sum": 107,
+              "recovery_vetoes_positive_decisions": 15,
+              "recovery_safe_reported_decisions": 480,
+              "recovery_safe_decisions": 465,
+              "recovery_unsafe_decisions": 15,
+              "safe_ticks_reported_decisions": 480,
+              "selected_zero_safe_ticks_decisions": 0,
+              "horizon_reported_decisions": 480,
+              "safe_horizon_comparable_decisions": 480,
+              "selected_short_horizon_decisions": 15,
+              "target_reported_decisions": 480,
+              "target_comparable_decisions": 479,
+              "target_switch_decisions": 89
+            }
+          }
+        },
+        {
+          "seed": "drift-dev-v1-8",
+          "policy": "expert",
+          "distance": 277984.7,
+          "ticks": 3014,
+          "crashed": true,
+          "final_speed": 152.7,
+          "requests": 406,
+          "mean_decision_ms": 46.497,
+          "max_decision_ms": 305.889,
+          "p95_decision_ms": 93.187,
+          "p99_decision_ms": 145.765,
+          "diagnostics": {
+            "attribution": "diagnostic_only_not_avoidability_or_same_traffic_counterfactual",
+            "initial_speed": 10.0,
+            "max_ticks": 3600,
+            "executed_ticks": 3014,
+            "remaining_ticks": 586,
+            "ceiling": 684180.0,
+            "actual_distance": 277984.6999999958,
+            "distance_loss": 406195.3000000042,
+            "action_opportunity_loss": 299514.000000007,
+            "termination_loss": 106681.29999999743,
+            "identity_residual": -2.3283064365386963e-10,
+            "action_counts": {
+              "ACCELERATE": 1657,
+              "NOTHING": 464,
+              "DECELERATE": 230,
+              "STEER_LEFT": 346,
+              "STEER_RIGHT": 317
+            },
+            "loss_by_action": {
+              "ACCELERATE": 8.843366261501728e-09,
+              "NOTHING": 90482.4,
+              "DECELERATE": 72363.79999999817,
+              "STEER_LEFT": 69297.30000000002,
+              "STEER_RIGHT": 67370.49999999999
+            },
+            "phases": {
+              "early": {
+                "action_counts": {
+                  "ACCELERATE": 806,
+                  "NOTHING": 128,
+                  "DECELERATE": 24,
+                  "STEER_LEFT": 117,
+                  "STEER_RIGHT": 125
+                },
+                "loss_by_action": {
+                  "ACCELERATE": 1.7252304584935985e-09,
+                  "NOTHING": 39771.2,
+                  "DECELERATE": 14040.799999999797,
+                  "STEER_LEFT": 34477.9,
+                  "STEER_RIGHT": 36243.1
+                }
+              },
+              "middle": {
+                "action_counts": {
+                  "ACCELERATE": 458,
+                  "STEER_LEFT": 151,
+                  "STEER_RIGHT": 143,
+                  "DECELERATE": 128,
+                  "NOTHING": 320
+                },
+                "loss_by_action": {
+                  "ACCELERATE": 5.03382557859311e-09,
+                  "STEER_LEFT": 28509.2,
+                  "STEER_RIGHT": 26277.999999999996,
+                  "DECELERATE": 46527.99999999867,
+                  "NOTHING": 49539.19999999999
+                }
+              },
+              "late": {
+                "action_counts": {
+                  "ACCELERATE": 393,
+                  "STEER_RIGHT": 49,
+                  "DECELERATE": 78,
+                  "STEER_LEFT": 78,
+                  "NOTHING": 16
+                },
+                "loss_by_action": {
+                  "ACCELERATE": 2.0843102244150202e-09,
+                  "STEER_RIGHT": 4849.399999999999,
+                  "DECELERATE": 11794.999999999667,
+                  "STEER_LEFT": 6310.2,
+                  "NOTHING": 1171.9999999999998
+                }
+              }
+            },
+            "decision_counts": {
+              "decisions": 406,
+              "decisions_with_plan": 406,
+              "recovery_checks_reported_decisions": 406,
+              "recovery_checks_sum": 519,
+              "recovery_checks_positive_decisions": 406,
+              "recovery_vetoes_reported_decisions": 406,
+              "recovery_vetoes_sum": 135,
+              "recovery_vetoes_positive_decisions": 22,
+              "recovery_safe_reported_decisions": 406,
+              "recovery_safe_decisions": 384,
+              "recovery_unsafe_decisions": 22,
+              "safe_ticks_reported_decisions": 406,
+              "selected_zero_safe_ticks_decisions": 2,
+              "horizon_reported_decisions": 406,
+              "safe_horizon_comparable_decisions": 406,
+              "selected_short_horizon_decisions": 22,
+              "target_reported_decisions": 406,
+              "target_comparable_decisions": 405,
+              "target_switch_decisions": 77
+            }
+          }
+        },
+        {
+          "seed": "drift-dev-v1-9",
+          "policy": "expert",
+          "distance": 262609.1,
+          "ticks": 3600,
+          "crashed": false,
+          "final_speed": 128.0,
+          "requests": 479,
+          "mean_decision_ms": 37.817,
+          "max_decision_ms": 172.09,
+          "p95_decision_ms": 39.892,
+          "p99_decision_ms": 120.008,
+          "diagnostics": {
+            "attribution": "diagnostic_only_not_avoidability_or_same_traffic_counterfactual",
+            "initial_speed": 10.0,
+            "max_ticks": 3600,
+            "executed_ticks": 3600,
+            "remaining_ticks": 0,
+            "ceiling": 684180.0,
+            "actual_distance": 262609.1,
+            "distance_loss": 421570.9,
+            "action_opportunity_loss": 421570.9000000031,
+            "termination_loss": 0.0,
+            "identity_residual": -3.0850060284137726e-09,
+            "action_counts": {
+              "ACCELERATE": 1646,
+              "NOTHING": 736,
+              "STEER_LEFT": 376,
+              "DECELERATE": 466,
+              "STEER_RIGHT": 376
+            },
+            "loss_by_action": {
+              "ACCELERATE": 4.4261698195491306e-09,
+              "NOTHING": 87210.4,
+              "STEER_LEFT": 75800.5,
+              "DECELERATE": 182512.5999999987,
+              "STEER_RIGHT": 76047.39999999998
+            },
+            "phases": {
+              "early": {
+                "action_counts": {
+                  "ACCELERATE": 575,
+                  "NOTHING": 112,
+                  "STEER_LEFT": 156,
+                  "DECELERATE": 206,
+                  "STEER_RIGHT": 151
+                },
+                "loss_by_action": {
+                  "ACCELERATE": -1.3692890432626115e-09,
+                  "NOTHING": 35581.59999999999,
+                  "STEER_LEFT": 46712.600000000006,
+                  "DECELERATE": 129864.20000000017,
+                  "STEER_RIGHT": 45512.19999999999
+                }
+              },
+              "middle": {
+                "action_counts": {
+                  "STEER_RIGHT": 158,
+                  "ACCELERATE": 704,
+                  "NOTHING": 128,
+                  "DECELERATE": 72,
+                  "STEER_LEFT": 138
+                },
+                "loss_by_action": {
+                  "STEER_RIGHT": 25113.899999999994,
+                  "ACCELERATE": 4.581366563893852e-09,
+                  "NOTHING": 27097.6,
+                  "DECELERATE": 24791.1999999993,
+                  "STEER_LEFT": 22246.7
+                }
+              },
+              "late": {
+                "action_counts": {
+                  "ACCELERATE": 367,
+                  "DECELERATE": 188,
+                  "STEER_RIGHT": 67,
+                  "STEER_LEFT": 82,
+                  "NOTHING": 496
+                },
+                "loss_by_action": {
+                  "ACCELERATE": 1.2140922989178904e-09,
+                  "DECELERATE": 27857.199999999226,
+                  "STEER_RIGHT": 5421.299999999999,
+                  "STEER_LEFT": 6841.2,
+                  "NOTHING": 24531.2
+                }
+              }
+            },
+            "decision_counts": {
+              "decisions": 479,
+              "decisions_with_plan": 479,
+              "recovery_checks_reported_decisions": 479,
+              "recovery_checks_sum": 539,
+              "recovery_checks_positive_decisions": 479,
+              "recovery_vetoes_reported_decisions": 479,
+              "recovery_vetoes_sum": 70,
+              "recovery_vetoes_positive_decisions": 10,
+              "recovery_safe_reported_decisions": 479,
+              "recovery_safe_decisions": 469,
+              "recovery_unsafe_decisions": 10,
+              "safe_ticks_reported_decisions": 479,
+              "selected_zero_safe_ticks_decisions": 0,
+              "horizon_reported_decisions": 479,
+              "safe_horizon_comparable_decisions": 479,
+              "selected_short_horizon_decisions": 10,
+              "target_reported_decisions": 479,
+              "target_comparable_decisions": 478,
+              "target_switch_decisions": 75
+            }
+          }
+        },
+        {
+          "seed": "drift-dev-v1-10",
+          "policy": "expert",
+          "distance": 292790.3,
+          "ticks": 3600,
+          "crashed": false,
+          "final_speed": 141.7,
+          "requests": 476,
+          "mean_decision_ms": 24.556,
+          "max_decision_ms": 140.4,
+          "p95_decision_ms": 38.414,
+          "p99_decision_ms": 64.364,
+          "diagnostics": {
+            "attribution": "diagnostic_only_not_avoidability_or_same_traffic_counterfactual",
+            "initial_speed": 10.0,
+            "max_ticks": 3600,
+            "executed_ticks": 3600,
+            "remaining_ticks": 0,
+            "ceiling": 684180.0,
+            "actual_distance": 292790.2999999938,
+            "distance_loss": 391389.7000000062,
+            "action_opportunity_loss": 391389.70000000444,
+            "termination_loss": 0.0,
+            "identity_residual": 1.7462298274040222e-09,
+            "action_counts": {
+              "ACCELERATE": 1661,
+              "NOTHING": 1108,
+              "DECELERATE": 344,
+              "STEER_LEFT": 246,
+              "STEER_RIGHT": 241
+            },
+            "loss_by_action": {
+              "ACCELERATE": 4.623985611074133e-09,
+              "NOTHING": 182650.8,
+              "DECELERATE": 125144.79999999981,
+              "STEER_LEFT": 42018.9,
+              "STEER_RIGHT": 41575.200000000004
+            },
+            "phases": {
+              "early": {
+                "action_counts": {
+                  "ACCELERATE": 488,
+                  "NOTHING": 474,
+                  "DECELERATE": 128,
+                  "STEER_LEFT": 55,
+                  "STEER_RIGHT": 55
+                },
+                "loss_by_action": {
+                  "ACCELERATE": -1.7505720206756337e-09,
+                  "NOTHING": 139830.50000000003,
+                  "DECELERATE": 79563.20000000056,
+                  "STEER_LEFT": 14824.5,
+                  "STEER_RIGHT": 15071.0
+                }
+              },
+              "middle": {
+                "action_counts": {
+                  "ACCELERATE": 796,
+                  "STEER_LEFT": 109,
+                  "DECELERATE": 64,
+                  "STEER_RIGHT": 111,
+                  "NOTHING": 120
+                },
+                "loss_by_action": {
+                  "ACCELERATE": 4.850633589237319e-09,
+                  "STEER_LEFT": 20571.8,
+                  "DECELERATE": 23863.99999999972,
+                  "STEER_RIGHT": 20313.3,
+                  "NOTHING": 21215.6
+                }
+              },
+              "late": {
+                "action_counts": {
+                  "STEER_RIGHT": 75,
+                  "STEER_LEFT": 82,
+                  "ACCELERATE": 377,
+                  "DECELERATE": 152,
+                  "NOTHING": 514
+                },
+                "loss_by_action": {
+                  "STEER_RIGHT": 6190.9,
+                  "STEER_LEFT": 6622.599999999999,
+                  "ACCELERATE": 1.5239240425124478e-09,
+                  "DECELERATE": 21717.599999999395,
+                  "NOTHING": 21604.699999999997
+                }
+              }
+            },
+            "decision_counts": {
+              "decisions": 476,
+              "decisions_with_plan": 476,
+              "recovery_checks_reported_decisions": 476,
+              "recovery_checks_sum": 529,
+              "recovery_checks_positive_decisions": 476,
+              "recovery_vetoes_reported_decisions": 476,
+              "recovery_vetoes_sum": 61,
+              "recovery_vetoes_positive_decisions": 8,
+              "recovery_safe_reported_decisions": 476,
+              "recovery_safe_decisions": 468,
+              "recovery_unsafe_decisions": 8,
+              "safe_ticks_reported_decisions": 476,
+              "selected_zero_safe_ticks_decisions": 0,
+              "horizon_reported_decisions": 476,
+              "safe_horizon_comparable_decisions": 476,
+              "selected_short_horizon_decisions": 8,
+              "target_reported_decisions": 476,
+              "target_comparable_decisions": 475,
+              "target_switch_decisions": 80
+            }
+          }
+        },
+        {
+          "seed": "drift-dev-v1-11",
+          "policy": "expert",
+          "distance": 30301.8,
+          "ticks": 1300,
+          "crashed": true,
+          "final_speed": 35.2,
+          "requests": 185,
+          "mean_decision_ms": 35.677,
+          "max_decision_ms": 128.43,
+          "p95_decision_ms": 81.071,
+          "p99_decision_ms": 117.699,
+          "diagnostics": {
+            "attribution": "diagnostic_only_not_avoidability_or_same_traffic_counterfactual",
+            "initial_speed": 10.0,
+            "max_ticks": 3600,
+            "executed_ticks": 1300,
+            "remaining_ticks": 2300,
+            "ceiling": 684180.0,
+            "actual_distance": 30301.800000000112,
+            "distance_loss": 653878.1999999998,
+            "action_opportunity_loss": 308303.19999999955,
+            "termination_loss": 345575.0000000006,
+            "identity_residual": -2.9103830456733704e-10,
+            "action_counts": {
+              "ACCELERATE": 580,
+              "DECELERATE": 328,
+              "STEER_LEFT": 139,
+              "STEER_RIGHT": 139,
+              "NOTHING": 114
+            },
+            "loss_by_action": {
+              "ACCELERATE": -1.4494179190194245e-09,
+              "DECELERATE": 195374.000000001,
+              "STEER_LEFT": 40102.7,
+              "STEER_RIGHT": 40302.00000000001,
+              "NOTHING": 32524.5
+            },
+            "phases": {
+              "early": {
+                "action_counts": {
+                  "ACCELERATE": 573,
+                  "DECELERATE": 254,
+                  "STEER_LEFT": 132,
+                  "STEER_RIGHT": 127,
+                  "NOTHING": 114
+                },
+                "loss_by_action": {
+                  "ACCELERATE": -1.4265881809194525e-09,
+                  "DECELERATE": 160633.40000000055,
+                  "STEER_LEFT": 38428.2,
+                  "STEER_RIGHT": 37454.600000000006,
+                  "NOTHING": 32524.5
+                }
+              },
+              "middle": {
+                "action_counts": {
+                  "STEER_LEFT": 7,
+                  "DECELERATE": 74,
+                  "STEER_RIGHT": 12,
+                  "ACCELERATE": 7
+                },
+                "loss_by_action": {
+                  "STEER_LEFT": 1674.5,
+                  "DECELERATE": 34740.60000000026,
+                  "STEER_RIGHT": 2847.4,
+                  "ACCELERATE": -2.282973809997202e-11
+                }
+              },
+              "late": {
+                "action_counts": {},
+                "loss_by_action": {}
+              }
+            },
+            "decision_counts": {
+              "decisions": 185,
+              "decisions_with_plan": 185,
+              "recovery_checks_reported_decisions": 185,
+              "recovery_checks_sum": 326,
+              "recovery_checks_positive_decisions": 185,
+              "recovery_vetoes_reported_decisions": 185,
+              "recovery_vetoes_sum": 167,
+              "recovery_vetoes_positive_decisions": 26,
+              "recovery_safe_reported_decisions": 185,
+              "recovery_safe_decisions": 159,
+              "recovery_unsafe_decisions": 26,
+              "safe_ticks_reported_decisions": 185,
+              "selected_zero_safe_ticks_decisions": 3,
+              "horizon_reported_decisions": 185,
+              "safe_horizon_comparable_decisions": 185,
+              "selected_short_horizon_decisions": 26,
+              "target_reported_decisions": 185,
+              "target_comparable_decisions": 184,
+              "target_switch_decisions": 38
+            }
+          }
+        }
+      ],
+      "comparison": {
+        "mean_distance_difference": 25446.591666666667,
+        "paired_bootstrap_95ci": [
+          -44746.925,
+          87836.2
+        ],
+        "distance_ratio": 1.1453924402554996,
+        "seed_wins": 7,
+        "survival_difference": -0.25
+      }
+    },
+    {
+      "label": "drift-speed-2.0",
+      "config": {
+        "horizon": 195,
+        "batch_size": 8,
+        "margin": 6.611122416525868,
+        "uncertainty": 0.07880208294199434,
+        "terminal_speed_weight": 74.66589072102381,
+        "blind_history": 140,
+        "blind_speed_buffer": 1.40146303237539,
+        "stale_velocity_uncertainty": 0.17042267780934428,
+        "lane_change_penalty": 0.49547352667356165,
+        "planner": "drift",
+        "maneuver_delay": 12,
+        "recovery_ticks": 120,
+        "adaptive_batch": true,
+        "drift_speed": 2.0
+      },
+      "summary": {
+        "games": 12,
+        "survived": 9,
+        "mean_distance": 215543.95,
+        "median_distance": 245576.35,
+        "min_distance": 1972.9,
+        "max_distance": 428696.3,
+        "mean_decision_ms": 44.531,
+        "p10_distance": 4421.790000000001,
+        "success_500k_count": 0,
+        "success_500k_rate": 0.0,
+        "survival_rate": 0.75,
+        "robust_utility": 97492.22887500003,
+        "survival_95ci": [
+          0.46769466506643426,
+          0.9110583316059453
+        ]
+      },
+      "results": [
+        {
+          "seed": "drift-dev-v1-0",
+          "policy": "expert",
+          "distance": 142885.1,
+          "ticks": 3600,
+          "crashed": false,
+          "final_speed": 91.4,
+          "requests": 488,
+          "mean_decision_ms": 40.149,
+          "max_decision_ms": 256.446,
+          "p95_decision_ms": 77.062,
+          "p99_decision_ms": 118.151,
+          "diagnostics": {
+            "attribution": "diagnostic_only_not_avoidability_or_same_traffic_counterfactual",
+            "initial_speed": 10.0,
+            "max_ticks": 3600,
+            "executed_ticks": 3600,
+            "remaining_ticks": 0,
+            "ceiling": 684180.0,
+            "actual_distance": 142885.1000000002,
+            "distance_loss": 541294.8999999998,
+            "action_opportunity_loss": 541294.8999999991,
+            "termination_loss": 0.0,
+            "identity_residual": 6.984919309616089e-10,
+            "action_counts": {
+              "ACCELERATE": 1238,
+              "DECELERATE": 424,
+              "NOTHING": 736,
+              "STEER_RIGHT": 610,
+              "STEER_LEFT": 592
+            },
+            "loss_by_action": {
+              "ACCELERATE": -1.2557474227126164e-09,
+              "DECELERATE": 184901.60000000033,
+              "NOTHING": 127351.99999999999,
+              "STEER_RIGHT": 114686.49999999999,
+              "STEER_LEFT": 114354.8
+            },
+            "phases": {
+              "early": {
+                "action_counts": {
+                  "ACCELERATE": 420,
+                  "DECELERATE": 152,
+                  "NOTHING": 208,
+                  "STEER_RIGHT": 214,
+                  "STEER_LEFT": 206
+                },
+                "loss_by_action": {
+                  "ACCELERATE": -7.101309262846911e-10,
+                  "DECELERATE": 100181.6,
+                  "NOTHING": 63642.4,
+                  "STEER_RIGHT": 63499.00000000001,
+                  "STEER_LEFT": 61303.700000000004
+                }
+              },
+              "middle": {
+                "action_counts": {
+                  "STEER_LEFT": 227,
+                  "ACCELERATE": 264,
+                  "STEER_RIGHT": 227,
+                  "DECELERATE": 224,
+                  "NOTHING": 258
+                },
+                "loss_by_action": {
+                  "STEER_LEFT": 42596.399999999994,
+                  "ACCELERATE": -7.358315623484657e-10,
+                  "STEER_RIGHT": 41757.49999999999,
+                  "DECELERATE": 79736.0000000006,
+                  "NOTHING": 39855.50000000001
+                }
+              },
+              "late": {
+                "action_counts": {
+                  "NOTHING": 270,
+                  "STEER_RIGHT": 169,
+                  "DECELERATE": 48,
+                  "ACCELERATE": 554,
+                  "STEER_LEFT": 159
+                },
+                "loss_by_action": {
+                  "NOTHING": 23854.100000000002,
+                  "STEER_RIGHT": 9429.999999999998,
+                  "DECELERATE": 4983.999999999991,
+                  "ACCELERATE": 1.9021506592054038e-10,
+                  "STEER_LEFT": 10454.7
+                }
+              }
+            },
+            "decision_counts": {
+              "decisions": 488,
+              "decisions_with_plan": 488,
+              "recovery_checks_reported_decisions": 488,
+              "recovery_checks_sum": 556,
+              "recovery_checks_positive_decisions": 488,
+              "recovery_vetoes_reported_decisions": 488,
+              "recovery_vetoes_sum": 80,
+              "recovery_vetoes_positive_decisions": 12,
+              "recovery_safe_reported_decisions": 488,
+              "recovery_safe_decisions": 476,
+              "recovery_unsafe_decisions": 12,
+              "safe_ticks_reported_decisions": 488,
+              "selected_zero_safe_ticks_decisions": 0,
+              "horizon_reported_decisions": 488,
+              "safe_horizon_comparable_decisions": 488,
+              "selected_short_horizon_decisions": 12,
+              "target_reported_decisions": 488,
+              "target_comparable_decisions": 487,
+              "target_switch_decisions": 118
+            }
+          }
+        },
+        {
+          "seed": "drift-dev-v1-1",
+          "policy": "expert",
+          "distance": 339484.4,
+          "ticks": 3600,
+          "crashed": false,
+          "final_speed": 147.0,
+          "requests": 489,
+          "mean_decision_ms": 39.186,
+          "max_decision_ms": 164.472,
+          "p95_decision_ms": 44.175,
+          "p99_decision_ms": 111.349,
+          "diagnostics": {
+            "attribution": "diagnostic_only_not_avoidability_or_same_traffic_counterfactual",
+            "initial_speed": 10.0,
+            "max_ticks": 3600,
+            "executed_ticks": 3600,
+            "remaining_ticks": 0,
+            "ceiling": 684180.0,
+            "actual_distance": 339484.3999999967,
+            "distance_loss": 344695.6000000033,
+            "action_opportunity_loss": 344695.60000000574,
+            "termination_loss": 0.0,
+            "identity_residual": -2.444721758365631e-09,
+            "action_counts": {
+              "ACCELERATE": 1675,
+              "STEER_LEFT": 422,
+              "DECELERATE": 305,
+              "NOTHING": 776,
+              "STEER_RIGHT": 422
+            },
+            "loss_by_action": {
+              "ACCELERATE": 7.5663889598232e-09,
+              "STEER_LEFT": 91031.30000000002,
+              "DECELERATE": 109876.79999999817,
+              "NOTHING": 52957.2,
+              "STEER_RIGHT": 90830.29999999999
+            },
+            "phases": {
+              "early": {
+                "action_counts": {
+                  "ACCELERATE": 713,
+                  "STEER_LEFT": 187,
+                  "DECELERATE": 92,
+                  "NOTHING": 8,
+                  "STEER_RIGHT": 200
+                },
+                "loss_by_action": {
+                  "ACCELERATE": -5.063174324249076e-10,
+                  "STEER_LEFT": 55328.69999999998,
+                  "DECELERATE": 53873.199999999735,
+                  "NOTHING": 2786.0,
+                  "STEER_RIGHT": 58463.90000000001
+                }
+              },
+              "middle": {
+                "action_counts": {
+                  "STEER_LEFT": 175,
+                  "ACCELERATE": 754,
+                  "DECELERATE": 99,
+                  "STEER_RIGHT": 148,
+                  "NOTHING": 24
+                },
+                "loss_by_action": {
+                  "STEER_LEFT": 32028.3,
+                  "ACCELERATE": 7.763432258167668e-09,
+                  "DECELERATE": 34283.79999999903,
+                  "STEER_RIGHT": 26756.499999999996,
+                  "NOTHING": 3690.7999999999997
+                }
+              },
+              "late": {
+                "action_counts": {
+                  "STEER_RIGHT": 74,
+                  "ACCELERATE": 208,
+                  "DECELERATE": 114,
+                  "NOTHING": 744,
+                  "STEER_LEFT": 60
+                },
+                "loss_by_action": {
+                  "STEER_RIGHT": 5609.9,
+                  "ACCELERATE": 3.0927413408043947e-10,
+                  "DECELERATE": 21719.799999999377,
+                  "NOTHING": 46480.399999999994,
+                  "STEER_LEFT": 3674.3
+                }
+              }
+            },
+            "decision_counts": {
+              "decisions": 489,
+              "decisions_with_plan": 489,
+              "recovery_checks_reported_decisions": 489,
+              "recovery_checks_sum": 601,
+              "recovery_checks_positive_decisions": 489,
+              "recovery_vetoes_reported_decisions": 489,
+              "recovery_vetoes_sum": 134,
+              "recovery_vetoes_positive_decisions": 22,
+              "recovery_safe_reported_decisions": 489,
+              "recovery_safe_decisions": 467,
+              "recovery_unsafe_decisions": 22,
+              "safe_ticks_reported_decisions": 489,
+              "selected_zero_safe_ticks_decisions": 0,
+              "horizon_reported_decisions": 489,
+              "safe_horizon_comparable_decisions": 489,
+              "selected_short_horizon_decisions": 22,
+              "target_reported_decisions": 489,
+              "target_comparable_decisions": 488,
+              "target_switch_decisions": 91
+            }
+          }
+        },
+        {
+          "seed": "drift-dev-v1-2",
+          "policy": "expert",
+          "distance": 1972.9,
+          "ticks": 145,
+          "crashed": true,
+          "final_speed": 11.1,
+          "requests": 28,
+          "mean_decision_ms": 80.713,
+          "max_decision_ms": 161.014,
+          "p95_decision_ms": 151.105,
+          "p99_decision_ms": 160.427,
+          "diagnostics": {
+            "attribution": "diagnostic_only_not_avoidability_or_same_traffic_counterfactual",
+            "initial_speed": 10.0,
+            "max_ticks": 3600,
+            "executed_ticks": 145,
+            "remaining_ticks": 3455,
+            "ceiling": 684180.0,
+            "actual_distance": 1972.8999999999992,
+            "distance_loss": 682207.1,
+            "action_opportunity_loss": 46832.6,
+            "termination_loss": 635374.5,
+            "identity_residual": 0.0,
+            "action_counts": {
+              "ACCELERATE": 78,
+              "DECELERATE": 67
+            },
+            "loss_by_action": {
+              "ACCELERATE": 2.4748675331309755e-11,
+              "DECELERATE": 46832.59999999998
+            },
+            "phases": {
+              "early": {
+                "action_counts": {
+                  "ACCELERATE": 78,
+                  "DECELERATE": 67
+                },
+                "loss_by_action": {
+                  "ACCELERATE": 2.4748675331309755e-11,
+                  "DECELERATE": 46832.59999999998
+                }
+              },
+              "middle": {
+                "action_counts": {},
+                "loss_by_action": {}
+              },
+              "late": {
+                "action_counts": {},
+                "loss_by_action": {}
+              }
+            },
+            "decision_counts": {
+              "decisions": 28,
+              "decisions_with_plan": 28,
+              "recovery_checks_reported_decisions": 28,
+              "recovery_checks_sum": 114,
+              "recovery_checks_positive_decisions": 28,
+              "recovery_vetoes_reported_decisions": 28,
+              "recovery_vetoes_sum": 105,
+              "recovery_vetoes_positive_decisions": 19,
+              "recovery_safe_reported_decisions": 28,
+              "recovery_safe_decisions": 9,
+              "recovery_unsafe_decisions": 19,
+              "safe_ticks_reported_decisions": 28,
+              "selected_zero_safe_ticks_decisions": 2,
+              "horizon_reported_decisions": 28,
+              "safe_horizon_comparable_decisions": 28,
+              "selected_short_horizon_decisions": 19,
+              "target_reported_decisions": 28,
+              "target_comparable_decisions": 27,
+              "target_switch_decisions": 0
+            }
+          }
+        },
+        {
+          "seed": "drift-dev-v1-3",
+          "policy": "expert",
+          "distance": 268631.3,
+          "ticks": 3600,
+          "crashed": false,
+          "final_speed": 145.0,
+          "requests": 498,
+          "mean_decision_ms": 39.138,
+          "max_decision_ms": 238.849,
+          "p95_decision_ms": 58.376,
+          "p99_decision_ms": 125.13,
+          "diagnostics": {
+            "attribution": "diagnostic_only_not_avoidability_or_same_traffic_counterfactual",
+            "initial_speed": 10.0,
+            "max_ticks": 3600,
+            "executed_ticks": 3600,
+            "remaining_ticks": 0,
+            "ceiling": 684180.0,
+            "actual_distance": 268631.29999999685,
+            "distance_loss": 415548.70000000315,
+            "action_opportunity_loss": 415548.7000000028,
+            "termination_loss": 0.0,
+            "identity_residual": 3.4924596548080444e-10,
+            "action_counts": {
+              "ACCELERATE": 1816,
+              "STEER_LEFT": 506,
+              "DECELERATE": 466,
+              "STEER_RIGHT": 504,
+              "NOTHING": 308
+            },
+            "loss_by_action": {
+              "ACCELERATE": 4.57572255085914e-09,
+              "STEER_LEFT": 97248.70000000004,
+              "DECELERATE": 180330.7999999982,
+              "STEER_RIGHT": 97016.2,
+              "NOTHING": 40952.999999999985
+            },
+            "phases": {
+              "early": {
+                "action_counts": {
+                  "ACCELERATE": 547,
+                  "STEER_LEFT": 231,
+                  "DECELERATE": 171,
+                  "STEER_RIGHT": 203,
+                  "NOTHING": 48
+                },
+                "loss_by_action": {
+                  "ACCELERATE": -1.5170230904804072e-09,
+                  "STEER_LEFT": 69102.70000000001,
+                  "DECELERATE": 105333.40000000026,
+                  "STEER_RIGHT": 62098.7,
+                  "NOTHING": 13666.4
+                }
+              },
+              "middle": {
+                "action_counts": {
+                  "ACCELERATE": 623,
+                  "DECELERATE": 175,
+                  "STEER_RIGHT": 147,
+                  "STEER_LEFT": 119,
+                  "NOTHING": 136
+                },
+                "loss_by_action": {
+                  "ACCELERATE": 3.6323619390099537e-09,
+                  "DECELERATE": 63711.79999999863,
+                  "STEER_RIGHT": 27071.600000000006,
+                  "STEER_LEFT": 20090.2,
+                  "NOTHING": 20012.399999999998
+                }
+              },
+              "late": {
+                "action_counts": {
+                  "ACCELERATE": 646,
+                  "STEER_RIGHT": 154,
+                  "STEER_LEFT": 156,
+                  "NOTHING": 124,
+                  "DECELERATE": 120
+                },
+                "loss_by_action": {
+                  "ACCELERATE": 2.460383702329594e-09,
+                  "STEER_RIGHT": 7845.900000000002,
+                  "STEER_LEFT": 8055.8,
+                  "NOTHING": 7274.200000000001,
+                  "DECELERATE": 11285.599999999677
+                }
+              }
+            },
+            "decision_counts": {
+              "decisions": 498,
+              "decisions_with_plan": 498,
+              "recovery_checks_reported_decisions": 498,
+              "recovery_checks_sum": 601,
+              "recovery_checks_positive_decisions": 498,
+              "recovery_vetoes_reported_decisions": 498,
+              "recovery_vetoes_sum": 121,
+              "recovery_vetoes_positive_decisions": 20,
+              "recovery_safe_reported_decisions": 498,
+              "recovery_safe_decisions": 480,
+              "recovery_unsafe_decisions": 18,
+              "safe_ticks_reported_decisions": 498,
+              "selected_zero_safe_ticks_decisions": 0,
+              "horizon_reported_decisions": 498,
+              "safe_horizon_comparable_decisions": 498,
+              "selected_short_horizon_decisions": 20,
+              "target_reported_decisions": 498,
+              "target_comparable_decisions": 497,
+              "target_switch_decisions": 124
+            }
+          }
+        },
+        {
+          "seed": "drift-dev-v1-4",
+          "policy": "expert",
+          "distance": 3361.4,
+          "ticks": 288,
+          "crashed": true,
+          "final_speed": 9.6,
+          "requests": 49,
+          "mean_decision_ms": 64.449,
+          "max_decision_ms": 121.643,
+          "p95_decision_ms": 106.57,
+          "p99_decision_ms": 121.013,
+          "diagnostics": {
+            "attribution": "diagnostic_only_not_avoidability_or_same_traffic_counterfactual",
+            "initial_speed": 10.0,
+            "max_ticks": 3600,
+            "executed_ticks": 288,
+            "remaining_ticks": 3312,
+            "ceiling": 684180.0,
+            "actual_distance": 3361.4,
+            "distance_loss": 680818.6,
+            "action_opportunity_loss": 100390.60000000002,
+            "termination_loss": 580428.0,
+            "identity_residual": 0.0,
+            "action_counts": {
+              "ACCELERATE": 120,
+              "DECELERATE": 124,
+              "STEER_LEFT": 28,
+              "STEER_RIGHT": 8,
+              "NOTHING": 8
+            },
+            "loss_by_action": {
+              "ACCELERATE": 2.5445756612896275e-11,
+              "DECELERATE": 85314.79999999999,
+              "STEER_LEFT": 9673.4,
+              "STEER_RIGHT": 2704.4000000000005,
+              "NOTHING": 2698.0
+            },
+            "phases": {
+              "early": {
+                "action_counts": {
+                  "ACCELERATE": 120,
+                  "DECELERATE": 124,
+                  "STEER_LEFT": 28,
+                  "STEER_RIGHT": 8,
+                  "NOTHING": 8
+                },
+                "loss_by_action": {
+                  "ACCELERATE": 2.5445756612896275e-11,
+                  "DECELERATE": 85314.79999999999,
+                  "STEER_LEFT": 9673.4,
+                  "STEER_RIGHT": 2704.4000000000005,
+                  "NOTHING": 2698.0
+                }
+              },
+              "middle": {
+                "action_counts": {},
+                "loss_by_action": {}
+              },
+              "late": {
+                "action_counts": {},
+                "loss_by_action": {}
+              }
+            },
+            "decision_counts": {
+              "decisions": 49,
+              "decisions_with_plan": 49,
+              "recovery_checks_reported_decisions": 49,
+              "recovery_checks_sum": 119,
+              "recovery_checks_positive_decisions": 49,
+              "recovery_vetoes_reported_decisions": 49,
+              "recovery_vetoes_sum": 86,
+              "recovery_vetoes_positive_decisions": 16,
+              "recovery_safe_reported_decisions": 49,
+              "recovery_safe_decisions": 33,
+              "recovery_unsafe_decisions": 16,
+              "safe_ticks_reported_decisions": 49,
+              "selected_zero_safe_ticks_decisions": 2,
+              "horizon_reported_decisions": 49,
+              "safe_horizon_comparable_decisions": 49,
+              "selected_short_horizon_decisions": 16,
+              "target_reported_decisions": 49,
+              "target_comparable_decisions": 48,
+              "target_switch_decisions": 8
+            }
+          }
+        },
+        {
+          "seed": "drift-dev-v1-5",
+          "policy": "expert",
+          "distance": 232620.0,
+          "ticks": 3600,
+          "crashed": false,
+          "final_speed": 128.0,
+          "requests": 489,
+          "mean_decision_ms": 40.195,
+          "max_decision_ms": 174.838,
+          "p95_decision_ms": 48.664,
+          "p99_decision_ms": 116.612,
+          "diagnostics": {
+            "attribution": "diagnostic_only_not_avoidability_or_same_traffic_counterfactual",
+            "initial_speed": 10.0,
+            "max_ticks": 3600,
+            "executed_ticks": 3600,
+            "remaining_ticks": 0,
+            "ceiling": 684180.0,
+            "actual_distance": 232620.00000000073,
+            "distance_loss": 451559.9999999993,
+            "action_opportunity_loss": 451560.00000000035,
+            "termination_loss": 0.0,
+            "identity_residual": -1.0477378964424133e-09,
+            "action_counts": {
+              "ACCELERATE": 1676,
+              "STEER_LEFT": 486,
+              "DECELERATE": 496,
+              "STEER_RIGHT": 486,
+              "NOTHING": 456
+            },
+            "loss_by_action": {
+              "ACCELERATE": 2.925223591132564e-09,
+              "STEER_LEFT": 91116.99999999997,
+              "DECELERATE": 198330.19999999742,
+              "STEER_RIGHT": 90891.60000000002,
+              "NOTHING": 71221.2
+            },
+            "phases": {
+              "early": {
+                "action_counts": {
+                  "ACCELERATE": 702,
+                  "STEER_LEFT": 154,
+                  "DECELERATE": 172,
+                  "STEER_RIGHT": 164,
+                  "NOTHING": 8
+                },
+                "loss_by_action": {
+                  "ACCELERATE": -1.987511377699036e-09,
+                  "STEER_LEFT": 46931.3,
+                  "DECELERATE": 108395.40000000013,
+                  "STEER_RIGHT": 49492.600000000006,
+                  "NOTHING": 2687.6
+                }
+              },
+              "middle": {
+                "action_counts": {
+                  "ACCELERATE": 290,
+                  "DECELERATE": 176,
+                  "NOTHING": 368,
+                  "STEER_RIGHT": 178,
+                  "STEER_LEFT": 188
+                },
+                "loss_by_action": {
+                  "ACCELERATE": 3.0724927047032224e-09,
+                  "DECELERATE": 64894.39999999816,
+                  "NOTHING": 60623.20000000001,
+                  "STEER_RIGHT": 31970.899999999998,
+                  "STEER_LEFT": 34326.700000000004
+                }
+              },
+              "late": {
+                "action_counts": {
+                  "STEER_RIGHT": 144,
+                  "DECELERATE": 148,
+                  "NOTHING": 80,
+                  "STEER_LEFT": 144,
+                  "ACCELERATE": 684
+                },
+                "loss_by_action": {
+                  "STEER_RIGHT": 9428.099999999999,
+                  "DECELERATE": 25040.3999999993,
+                  "NOTHING": 7910.4,
+                  "STEER_LEFT": 9858.999999999998,
+                  "ACCELERATE": 1.8402422641283778e-09
+                }
+              }
+            },
+            "decision_counts": {
+              "decisions": 489,
+              "decisions_with_plan": 489,
+              "recovery_checks_reported_decisions": 489,
+              "recovery_checks_sum": 570,
+              "recovery_checks_positive_decisions": 489,
+              "recovery_vetoes_reported_decisions": 489,
+              "recovery_vetoes_sum": 95,
+              "recovery_vetoes_positive_decisions": 16,
+              "recovery_safe_reported_decisions": 489,
+              "recovery_safe_decisions": 474,
+              "recovery_unsafe_decisions": 15,
+              "safe_ticks_reported_decisions": 489,
+              "selected_zero_safe_ticks_decisions": 0,
+              "horizon_reported_decisions": 489,
+              "safe_horizon_comparable_decisions": 489,
+              "selected_short_horizon_decisions": 16,
+              "target_reported_decisions": 489,
+              "target_comparable_decisions": 488,
+              "target_switch_decisions": 126
+            }
+          }
+        },
+        {
+          "seed": "drift-dev-v1-6",
+          "policy": "expert",
+          "distance": 359946.6,
+          "ticks": 3600,
+          "crashed": false,
+          "final_speed": 205.2,
+          "requests": 504,
+          "mean_decision_ms": 39.636,
+          "max_decision_ms": 148.339,
+          "p95_decision_ms": 84.58,
+          "p99_decision_ms": 107.819,
+          "diagnostics": {
+            "attribution": "diagnostic_only_not_avoidability_or_same_traffic_counterfactual",
+            "initial_speed": 10.0,
+            "max_ticks": 3600,
+            "executed_ticks": 3600,
+            "remaining_ticks": 0,
+            "ceiling": 684180.0,
+            "actual_distance": 359946.59999998915,
+            "distance_loss": 324233.40000001085,
+            "action_opportunity_loss": 324233.4000000074,
+            "termination_loss": 0.0,
+            "identity_residual": 3.434251993894577e-09,
+            "action_counts": {
+              "ACCELERATE": 2314,
+              "DECELERATE": 362,
+              "STEER_LEFT": 402,
+              "STEER_RIGHT": 402,
+              "NOTHING": 120
+            },
+            "loss_by_action": {
+              "ACCELERATE": 9.211766710537361e-09,
+              "DECELERATE": 154771.7999999982,
+              "STEER_LEFT": 78504.0,
+              "STEER_RIGHT": 78950.0,
+              "NOTHING": 12007.599999999997
+            },
+            "phases": {
+              "early": {
+                "action_counts": {
+                  "ACCELERATE": 728,
+                  "DECELERATE": 137,
+                  "STEER_LEFT": 179,
+                  "STEER_RIGHT": 156
+                },
+                "loss_by_action": {
+                  "ACCELERATE": -1.1851926939865365e-09,
+                  "DECELERATE": 90414.20000000001,
+                  "STEER_LEFT": 50920.6,
+                  "STEER_RIGHT": 45326.6
+                }
+              },
+              "middle": {
+                "action_counts": {
+                  "STEER_LEFT": 134,
+                  "ACCELERATE": 755,
+                  "DECELERATE": 141,
+                  "STEER_RIGHT": 130,
+                  "NOTHING": 40
+                },
+                "loss_by_action": {
+                  "STEER_LEFT": 22306.1,
+                  "ACCELERATE": 7.654522016231624e-09,
+                  "DECELERATE": 53223.599999998485,
+                  "STEER_RIGHT": 24962.9,
+                  "NOTHING": 7650.8
+                }
+              },
+              "late": {
+                "action_counts": {
+                  "STEER_LEFT": 89,
+                  "ACCELERATE": 831,
+                  "STEER_RIGHT": 116,
+                  "DECELERATE": 84,
+                  "NOTHING": 80
+                },
+                "loss_by_action": {
+                  "STEER_LEFT": 5277.299999999999,
+                  "ACCELERATE": 2.7424373882922737e-09,
+                  "STEER_RIGHT": 8660.499999999998,
+                  "DECELERATE": 11133.999999999685,
+                  "NOTHING": 4356.800000000001
+                }
+              }
+            },
+            "decision_counts": {
+              "decisions": 504,
+              "decisions_with_plan": 504,
+              "recovery_checks_reported_decisions": 504,
+              "recovery_checks_sum": 607,
+              "recovery_checks_positive_decisions": 504,
+              "recovery_vetoes_reported_decisions": 504,
+              "recovery_vetoes_sum": 123,
+              "recovery_vetoes_positive_decisions": 20,
+              "recovery_safe_reported_decisions": 504,
+              "recovery_safe_decisions": 484,
+              "recovery_unsafe_decisions": 20,
+              "safe_ticks_reported_decisions": 504,
+              "selected_zero_safe_ticks_decisions": 0,
+              "horizon_reported_decisions": 504,
+              "safe_horizon_comparable_decisions": 504,
+              "selected_short_horizon_decisions": 20,
+              "target_reported_decisions": 504,
+              "target_comparable_decisions": 503,
+              "target_switch_decisions": 111
+            }
+          }
+        },
+        {
+          "seed": "drift-dev-v1-7",
+          "policy": "expert",
+          "distance": 428696.3,
+          "ticks": 3600,
+          "crashed": false,
+          "final_speed": 208.4,
+          "requests": 490,
+          "mean_decision_ms": 38.335,
+          "max_decision_ms": 109.753,
+          "p95_decision_ms": 67.63,
+          "p99_decision_ms": 96.095,
+          "diagnostics": {
+            "attribution": "diagnostic_only_not_avoidability_or_same_traffic_counterfactual",
+            "initial_speed": 10.0,
+            "max_ticks": 3600,
+            "executed_ticks": 3600,
+            "remaining_ticks": 0,
+            "ceiling": 684180.0,
+            "actual_distance": 428696.29999998515,
+            "distance_loss": 255483.70000001485,
+            "action_opportunity_loss": 255483.70000001046,
+            "termination_loss": 0.0,
+            "identity_residual": 4.394678398966789e-09,
+            "action_counts": {
+              "ACCELERATE": 2249,
+              "NOTHING": 248,
+              "DECELERATE": 265,
+              "STEER_RIGHT": 419,
+              "STEER_LEFT": 419
+            },
+            "loss_by_action": {
+              "ACCELERATE": 1.1832108709475264e-08,
+              "NOTHING": 66333.19999999998,
+              "DECELERATE": 67026.39999999863,
+              "STEER_RIGHT": 61175.90000000001,
+              "STEER_LEFT": 60948.200000000004
+            },
+            "phases": {
+              "early": {
+                "action_counts": {
+                  "ACCELERATE": 855,
+                  "NOTHING": 216,
+                  "DECELERATE": 31,
+                  "STEER_RIGHT": 47,
+                  "STEER_LEFT": 51
+                },
+                "loss_by_action": {
+                  "ACCELERATE": 2.174414343025788e-09,
+                  "NOTHING": 62413.999999999985,
+                  "DECELERATE": 19212.2,
+                  "STEER_RIGHT": 15525.699999999999,
+                  "STEER_LEFT": 16038.9
+                }
+              },
+              "middle": {
+                "action_counts": {
+                  "STEER_LEFT": 188,
+                  "ACCELERATE": 717,
+                  "STEER_RIGHT": 168,
+                  "DECELERATE": 103,
+                  "NOTHING": 24
+                },
+                "loss_by_action": {
+                  "STEER_LEFT": 34327.9,
+                  "ACCELERATE": 7.300343246585683e-09,
+                  "STEER_RIGHT": 32193.099999999995,
+                  "DECELERATE": 35152.99999999901,
+                  "NOTHING": 3658.7999999999997
+                }
+              },
+              "late": {
+                "action_counts": {
+                  "ACCELERATE": 677,
+                  "STEER_RIGHT": 204,
+                  "STEER_LEFT": 180,
+                  "DECELERATE": 131,
+                  "NOTHING": 8
+                },
+                "loss_by_action": {
+                  "ACCELERATE": 2.357351119863793e-09,
+                  "STEER_RIGHT": 13457.099999999999,
+                  "STEER_LEFT": 10581.4,
+                  "DECELERATE": 12661.19999999964,
+                  "NOTHING": 260.40000000000003
+                }
+              }
+            },
+            "decision_counts": {
+              "decisions": 490,
+              "decisions_with_plan": 490,
+              "recovery_checks_reported_decisions": 490,
+              "recovery_checks_sum": 550,
+              "recovery_checks_positive_decisions": 490,
+              "recovery_vetoes_reported_decisions": 490,
+              "recovery_vetoes_sum": 74,
+              "recovery_vetoes_positive_decisions": 14,
+              "recovery_safe_reported_decisions": 490,
+              "recovery_safe_decisions": 476,
+              "recovery_unsafe_decisions": 14,
+              "safe_ticks_reported_decisions": 490,
+              "selected_zero_safe_ticks_decisions": 0,
+              "horizon_reported_decisions": 490,
+              "safe_horizon_comparable_decisions": 490,
+              "selected_short_horizon_decisions": 14,
+              "target_reported_decisions": 490,
+              "target_comparable_decisions": 489,
+              "target_switch_decisions": 69
+            }
+          }
+        },
+        {
+          "seed": "drift-dev-v1-8",
+          "policy": "expert",
+          "distance": 248309.3,
+          "ticks": 3600,
+          "crashed": false,
+          "final_speed": 130.2,
+          "requests": 476,
+          "mean_decision_ms": 41.001,
+          "max_decision_ms": 234.735,
+          "p95_decision_ms": 82.804,
+          "p99_decision_ms": 97.988,
+          "diagnostics": {
+            "attribution": "diagnostic_only_not_avoidability_or_same_traffic_counterfactual",
+            "initial_speed": 10.0,
+            "max_ticks": 3600,
+            "executed_ticks": 3600,
+            "remaining_ticks": 0,
+            "ceiling": 684180.0,
+            "actual_distance": 248309.29999999798,
+            "distance_loss": 435870.70000000205,
+            "action_opportunity_loss": 435870.7000000013,
+            "termination_loss": 0.0,
+            "identity_residual": 7.566995918750763e-10,
+            "action_counts": {
+              "ACCELERATE": 1574,
+              "NOTHING": 872,
+              "DECELERATE": 372,
+              "STEER_LEFT": 389,
+              "STEER_RIGHT": 393
+            },
+            "loss_by_action": {
+              "ACCELERATE": 2.6824463483787753e-09,
+              "NOTHING": 152683.6,
+              "DECELERATE": 153393.9999999986,
+              "STEER_LEFT": 64955.7,
+              "STEER_RIGHT": 64837.4
+            },
+            "phases": {
+              "early": {
+                "action_counts": {
+                  "ACCELERATE": 648,
+                  "NOTHING": 128,
+                  "DECELERATE": 132,
+                  "STEER_LEFT": 146,
+                  "STEER_RIGHT": 146
+                },
+                "loss_by_action": {
+                  "ACCELERATE": -2.3590734365974697e-09,
+                  "NOTHING": 38689.6,
+                  "DECELERATE": 81187.60000000054,
+                  "STEER_LEFT": 43843.1,
+                  "STEER_RIGHT": 43393.7
+                }
+              },
+              "middle": {
+                "action_counts": {
+                  "ACCELERATE": 410,
+                  "NOTHING": 512,
+                  "DECELERATE": 128,
+                  "STEER_LEFT": 77,
+                  "STEER_RIGHT": 73
+                },
+                "loss_by_action": {
+                  "ACCELERATE": 3.783040630755963e-09,
+                  "NOTHING": 93113.6,
+                  "DECELERATE": 50291.19999999857,
+                  "STEER_LEFT": 12465.8,
+                  "STEER_RIGHT": 11986.3
+                }
+              },
+              "late": {
+                "action_counts": {
+                  "STEER_LEFT": 166,
+                  "STEER_RIGHT": 174,
+                  "DECELERATE": 112,
+                  "NOTHING": 232,
+                  "ACCELERATE": 516
+                },
+                "loss_by_action": {
+                  "STEER_LEFT": 8646.8,
+                  "STEER_RIGHT": 9457.399999999998,
+                  "DECELERATE": 21915.19999999938,
+                  "NOTHING": 20880.399999999998,
+                  "ACCELERATE": 1.2584791542202822e-09
+                }
+              }
+            },
+            "decision_counts": {
+              "decisions": 476,
+              "decisions_with_plan": 476,
+              "recovery_checks_reported_decisions": 476,
+              "recovery_checks_sum": 512,
+              "recovery_checks_positive_decisions": 476,
+              "recovery_vetoes_reported_decisions": 476,
+              "recovery_vetoes_sum": 45,
+              "recovery_vetoes_positive_decisions": 9,
+              "recovery_safe_reported_decisions": 476,
+              "recovery_safe_decisions": 467,
+              "recovery_unsafe_decisions": 9,
+              "safe_ticks_reported_decisions": 476,
+              "selected_zero_safe_ticks_decisions": 0,
+              "horizon_reported_decisions": 476,
+              "safe_horizon_comparable_decisions": 476,
+              "selected_short_horizon_decisions": 9,
+              "target_reported_decisions": 476,
+              "target_comparable_decisions": 475,
+              "target_switch_decisions": 72
+            }
+          }
+        },
+        {
+          "seed": "drift-dev-v1-9",
+          "policy": "expert",
+          "distance": 303811.4,
+          "ticks": 3600,
+          "crashed": false,
+          "final_speed": 174.2,
+          "requests": 482,
+          "mean_decision_ms": 38.791,
+          "max_decision_ms": 211.768,
+          "p95_decision_ms": 61.198,
+          "p99_decision_ms": 101.869,
+          "diagnostics": {
+            "attribution": "diagnostic_only_not_avoidability_or_same_traffic_counterfactual",
+            "initial_speed": 10.0,
+            "max_ticks": 3600,
+            "executed_ticks": 3600,
+            "remaining_ticks": 0,
+            "ceiling": 684180.0,
+            "actual_distance": 303811.3999999968,
+            "distance_loss": 380368.6000000032,
+            "action_opportunity_loss": 380368.60000000516,
+            "termination_loss": 0.0,
+            "identity_residual": -1.979060471057892e-09,
+            "action_counts": {
+              "ACCELERATE": 1970,
+              "NOTHING": 288,
+              "DECELERATE": 328,
+              "STEER_LEFT": 507,
+              "STEER_RIGHT": 507
+            },
+            "loss_by_action": {
+              "ACCELERATE": 6.454025924806928e-09,
+              "NOTHING": 70634.4,
+              "DECELERATE": 147602.3999999987,
+              "STEER_LEFT": 81166.20000000001,
+              "STEER_RIGHT": 80965.59999999999
+            },
+            "phases": {
+              "early": {
+                "action_counts": {
+                  "ACCELERATE": 606,
+                  "NOTHING": 128,
+                  "DECELERATE": 152,
+                  "STEER_LEFT": 157,
+                  "STEER_RIGHT": 157
+                },
+                "loss_by_action": {
+                  "ACCELERATE": -1.5016049514926522e-09,
+                  "NOTHING": 38552.799999999996,
+                  "DECELERATE": 100911.20000000004,
+                  "STEER_LEFT": 47205.90000000001,
+                  "STEER_RIGHT": 46982.9
+                }
+              },
+              "middle": {
+                "action_counts": {
+                  "ACCELERATE": 693,
+                  "NOTHING": 144,
+                  "DECELERATE": 120,
+                  "STEER_RIGHT": 122,
+                  "STEER_LEFT": 121
+                },
+                "loss_by_action": {
+                  "ACCELERATE": 5.773158617827789e-09,
+                  "NOTHING": 30540.0,
+                  "DECELERATE": 40986.39999999885,
+                  "STEER_RIGHT": 19255.3,
+                  "STEER_LEFT": 19378.7
+                }
+              },
+              "late": {
+                "action_counts": {
+                  "STEER_RIGHT": 228,
+                  "NOTHING": 16,
+                  "ACCELERATE": 671,
+                  "STEER_LEFT": 229,
+                  "DECELERATE": 56
+                },
+                "loss_by_action": {
+                  "STEER_RIGHT": 14727.4,
+                  "NOTHING": 1541.6000000000001,
+                  "ACCELERATE": 2.1824722584717904e-09,
+                  "STEER_LEFT": 14581.600000000002,
+                  "DECELERATE": 5704.799999999837
+                }
+              }
+            },
+            "decision_counts": {
+              "decisions": 482,
+              "decisions_with_plan": 482,
+              "recovery_checks_reported_decisions": 482,
+              "recovery_checks_sum": 560,
+              "recovery_checks_positive_decisions": 482,
+              "recovery_vetoes_reported_decisions": 482,
+              "recovery_vetoes_sum": 95,
+              "recovery_vetoes_positive_decisions": 17,
+              "recovery_safe_reported_decisions": 482,
+              "recovery_safe_decisions": 465,
+              "recovery_unsafe_decisions": 17,
+              "safe_ticks_reported_decisions": 482,
+              "selected_zero_safe_ticks_decisions": 0,
+              "horizon_reported_decisions": 482,
+              "safe_horizon_comparable_decisions": 482,
+              "selected_short_horizon_decisions": 17,
+              "target_reported_decisions": 482,
+              "target_comparable_decisions": 481,
+              "target_switch_decisions": 57
+            }
+          }
+        },
+        {
+          "seed": "drift-dev-v1-10",
+          "policy": "expert",
+          "distance": 242843.4,
+          "ticks": 3600,
+          "crashed": false,
+          "final_speed": 134.7,
+          "requests": 484,
+          "mean_decision_ms": 25.413,
+          "max_decision_ms": 135.04,
+          "p95_decision_ms": 37.215,
+          "p99_decision_ms": 66.013,
+          "diagnostics": {
+            "attribution": "diagnostic_only_not_avoidability_or_same_traffic_counterfactual",
+            "initial_speed": 10.0,
+            "max_ticks": 3600,
+            "executed_ticks": 3600,
+            "remaining_ticks": 0,
+            "ceiling": 684180.0,
+            "actual_distance": 242843.39999999845,
+            "distance_loss": 441336.60000000155,
+            "action_opportunity_loss": 441336.60000000196,
+            "termination_loss": 0.0,
+            "identity_residual": -4.0745362639427185e-10,
+            "action_counts": {
+              "ACCELERATE": 1613,
+              "NOTHING": 793,
+              "DECELERATE": 366,
+              "STEER_RIGHT": 415,
+              "STEER_LEFT": 413
+            },
+            "loss_by_action": {
+              "ACCELERATE": 2.1586695486686125e-09,
+              "NOTHING": 211077.60000000003,
+              "DECELERATE": 138615.39999999973,
+              "STEER_RIGHT": 45836.50000000001,
+              "STEER_LEFT": 45807.100000000006
+            },
+            "phases": {
+              "early": {
+                "action_counts": {
+                  "ACCELERATE": 328,
+                  "NOTHING": 736,
+                  "DECELERATE": 128,
+                  "STEER_RIGHT": 8
+                },
+                "loss_by_action": {
+                  "ACCELERATE": -1.1796700283284167e-09,
+                  "NOTHING": 208388.80000000005,
+                  "DECELERATE": 79052.80000000057,
+                  "STEER_RIGHT": 1923.6
+                }
+              },
+              "middle": {
+                "action_counts": {
+                  "STEER_RIGHT": 173,
+                  "ACCELERATE": 706,
+                  "STEER_LEFT": 191,
+                  "DECELERATE": 130
+                },
+                "loss_by_action": {
+                  "STEER_RIGHT": 30405.200000000004,
+                  "ACCELERATE": 1.2362256773812419e-09,
+                  "STEER_LEFT": 33299.7,
+                  "DECELERATE": 46739.79999999965
+                }
+              },
+              "late": {
+                "action_counts": {
+                  "ACCELERATE": 579,
+                  "STEER_RIGHT": 234,
+                  "DECELERATE": 108,
+                  "STEER_LEFT": 222,
+                  "NOTHING": 57
+                },
+                "loss_by_action": {
+                  "ACCELERATE": 2.1021138996157873e-09,
+                  "STEER_RIGHT": 13507.7,
+                  "DECELERATE": 12822.799999999635,
+                  "STEER_LEFT": 12507.399999999998,
+                  "NOTHING": 2688.7999999999997
+                }
+              }
+            },
+            "decision_counts": {
+              "decisions": 484,
+              "decisions_with_plan": 484,
+              "recovery_checks_reported_decisions": 484,
+              "recovery_checks_sum": 564,
+              "recovery_checks_positive_decisions": 484,
+              "recovery_vetoes_reported_decisions": 484,
+              "recovery_vetoes_sum": 96,
+              "recovery_vetoes_positive_decisions": 16,
+              "recovery_safe_reported_decisions": 484,
+              "recovery_safe_decisions": 468,
+              "recovery_unsafe_decisions": 16,
+              "safe_ticks_reported_decisions": 484,
+              "selected_zero_safe_ticks_decisions": 0,
+              "horizon_reported_decisions": 484,
+              "safe_horizon_comparable_decisions": 484,
+              "selected_short_horizon_decisions": 16,
+              "target_reported_decisions": 484,
+              "target_comparable_decisions": 483,
+              "target_switch_decisions": 74
+            }
+          }
+        },
+        {
+          "seed": "drift-dev-v1-11",
+          "policy": "expert",
+          "distance": 13965.3,
+          "ticks": 820,
+          "crashed": true,
+          "final_speed": 22.0,
+          "requests": 122,
+          "mean_decision_ms": 47.362,
+          "max_decision_ms": 170.953,
+          "p95_decision_ms": 106.376,
+          "p99_decision_ms": 145.152,
+          "diagnostics": {
+            "attribution": "diagnostic_only_not_avoidability_or_same_traffic_counterfactual",
+            "initial_speed": 10.0,
+            "max_ticks": 3600,
+            "executed_ticks": 820,
+            "remaining_ticks": 2780,
+            "ceiling": 684180.0,
+            "actual_distance": 13965.300000000005,
+            "distance_loss": 670214.7,
+            "action_opportunity_loss": 222495.6999999998,
+            "termination_loss": 447719.0000000002,
+            "identity_residual": -5.820766091346741e-11,
+            "action_counts": {
+              "ACCELERATE": 345,
+              "DECELERATE": 225,
+              "NOTHING": 48,
+              "STEER_LEFT": 100,
+              "STEER_RIGHT": 102
+            },
+            "loss_by_action": {
+              "ACCELERATE": -6.128512697323174e-10,
+              "DECELERATE": 144226.6000000004,
+              "NOTHING": 16175.2,
+              "STEER_LEFT": 30535.399999999998,
+              "STEER_RIGHT": 31558.5
+            },
+            "phases": {
+              "early": {
+                "action_counts": {
+                  "ACCELERATE": 345,
+                  "DECELERATE": 225,
+                  "NOTHING": 48,
+                  "STEER_LEFT": 100,
+                  "STEER_RIGHT": 102
+                },
+                "loss_by_action": {
+                  "ACCELERATE": -6.128512697323174e-10,
+                  "DECELERATE": 144226.6000000004,
+                  "NOTHING": 16175.2,
+                  "STEER_LEFT": 30535.399999999998,
+                  "STEER_RIGHT": 31558.5
+                }
+              },
+              "middle": {
+                "action_counts": {},
+                "loss_by_action": {}
+              },
+              "late": {
+                "action_counts": {},
+                "loss_by_action": {}
+              }
+            },
+            "decision_counts": {
+              "decisions": 122,
+              "decisions_with_plan": 122,
+              "recovery_checks_reported_decisions": 122,
+              "recovery_checks_sum": 268,
+              "recovery_checks_positive_decisions": 122,
+              "recovery_vetoes_reported_decisions": 122,
+              "recovery_vetoes_sum": 172,
+              "recovery_vetoes_positive_decisions": 28,
+              "recovery_safe_reported_decisions": 122,
+              "recovery_safe_decisions": 95,
+              "recovery_unsafe_decisions": 27,
+              "safe_ticks_reported_decisions": 122,
+              "selected_zero_safe_ticks_decisions": 2,
+              "horizon_reported_decisions": 122,
+              "safe_horizon_comparable_decisions": 122,
+              "selected_short_horizon_decisions": 28,
+              "target_reported_decisions": 122,
+              "target_comparable_decisions": 121,
+              "target_switch_decisions": 23
+            }
+          }
+        }
+      ],
+      "comparison": {
+        "mean_distance_difference": 40523.90833333333,
+        "paired_bootstrap_95ci": [
+          -43439.9,
+          111577.20833333334
+        ],
+        "distance_ratio": 1.2315386714396974,
+        "seed_wins": 7,
+        "survival_difference": -0.16666666666666663
+      }
+    }
+  ]
+}
